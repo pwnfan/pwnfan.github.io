@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"検索…","empty":"検索結果が見つかりませんでした: ${query}","hits_time":"${hits} の結果が ${time} ms で見つかりました","hits":"${hits} 件の結果が見つかりました"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="この記事では、ChatGPT関連のVSCodeプラグインを使用して、Hexoの投稿（ソースコード）を他の言語に効率的に翻訳する方法について説明します。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.003|JP」ChatGPTを使用してHexo記事を効率的に翻訳">
+<meta property="og:url" content="https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="この記事では、ChatGPT関連のVSCodeプラグインを使用して、Hexoの投稿（ソースコード）を他の言語に効率的に翻訳する方法について説明します。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/1.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/2.png">
+<meta property="article:published_time" content="2023-04-02T23:22:26.000Z">
+<meta property="article:modified_time" content="2023-04-02T23:22:26.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Multi-Language">
+<meta property="article:tag" content="Translation">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo-theme-NexT">
+<meta property="article:tag" content="HowTo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/1.gif">
+
+
+<link rel="canonical" href="https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ja","comments":true,"permalink":"https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/","path":"ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/","title":"「2023.003|JP」ChatGPTを使用してHexo記事を効率的に翻訳"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.003|JP」ChatGPTを使用してHexo記事を効率的に翻訳 | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="ナビゲーションバーの切り替え" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="検索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>ホーム</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>アーカイブ<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>タグ<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>プロフィール</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>サイトマップ</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>検索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="検索…" spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          見出し
+        </li>
+        <li class="sidebar-nav-overview">
+          概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BF%BB%E8%A8%B3%E8%A6%81%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">翻訳要件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chatgpt---genie-ai%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B"><span class="nav-number">2.</span> <span class="nav-text">ChatGPT - Genie AIを使用する</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A2%E5%AD%98%E3%81%AE%E5%95%8F%E9%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">既存の問題</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">ポスト</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">タグ</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ja">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.003|JP」ChatGPTを使用してHexo記事を効率的に翻訳 | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.003|JP」ChatGPTを使用してHexo記事を効率的に翻訳
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">投稿日</span>
+
+      <time title="作成日：2023-04-02 23:22:26" itemprop="dateCreated datePublished" datetime="2023-04-02T23:22:26Z">2023-04-02</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閲覧数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閲覧数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="単語数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">単語数：</span>
+      <span>854</span>
+    </span>
+    <span class="post-meta-item" title="読書の時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">読書の時間 &asymp;</span>
+      <span>3 分</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="翻訳要件">翻訳要件</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZnJvbnQtbWF0dGVy">Front-matter<i class="fa fa-external-link-alt"></i></span>内の<code>title</code>と抜粋を翻訳する必要があります</li>
+<li>HexoとNexTテーマの両方が、画像、コードなどを挿入するために使用される独自のTagプラグイン（<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnM=">Hexo<i class="fa fa-external-link-alt"></i></span> / <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RhZy1wbHVnaW5zLw==">NexT<i class="fa fa-external-link-alt"></i></span>）を定義していますが、ほとんどの場合、これらは翻訳する必要はありません</li>
+<li>翻訳品質は比較的高く、簡単な校正と確認後に公開できます</li>
+</ul>
+<h2 id="chatgpt---genie-aiを使用する">ChatGPT - Genie AIを使用する</h2>
+<p>Google Translateなどの従来の翻訳ツールは上記の要件を満たすことができませんが、幸いにもChatGPTがリリースされました。これは基本的にこれらの要件を満たすことができます。</p>
+<p>私がエディタとしてVSCodeを使用しているので、まずはVSCodeプラグインを使用して問題を解決しようと考えました。この記事を書いているとき、VSCodeプラグインマーケットで<code>ChatGPT</code>を検索すると、<code>ChatGPT - Genie AI</code>のダウンロード回数とスコアが最高でした。だから私は最初にそれを選んだ。</p>
+<p><code>Genie AI</code>は基本的にChatGPT APIを呼び出して翻訳しています。初めて使用するときは、OpenAI APIキーを入力するように求めるダイアログボックスが表示されます。</p>
+<p>翻訳の手順は次のとおりです。</p>
+<ol type="1">
+<li>翻訳する投稿ソースコードを選択します
+<ul>
+<li>OpenAI API Key に関連付けられたアカウントがPlusではなくFree Planの場合、送信されるメッセージの長さに制限があります。現在は2048です。したがって、この場合、記事が長い場合は、2048バイト以下のソースコードを選択し、複数回に分けて翻訳する必要があります。</li>
+</ul></li>
+<li>Genie AIインターフェイスに翻訳要件を入力します。私は「This is the source code of a post written with Hexo's Next theme. Please help me generate an English translation version, and the code part does not need to be translated」と入力し、<code>Ask</code>ボタンをクリックしました
+<ul>
+<li><code>English</code>を翻訳したい言語に変更します</li>
+</ul></li>
+<li>Genie AIは新しいファイルを開き、翻訳されたソースコードをそこに書き込みます</li>
+</ol>
+<img data-src="/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/1.gif" class="" title="ChatGPT - Genie AI は中国語の投稿を英語に翻訳する">
+<h2 id="既存の問題">既存の問題</h2>
+<ul>
+<li>中国語から日本語への直接翻訳の品質が、中国語=&gt;英語=&gt;日本語の品質よりも低いことが分かりました。今後の記事の翻訳には、後者の方法を使用する必要があるかもしれません。</li>
+<li>時々、ChatGPTが英語から日本語への翻訳を依頼されても、最終的には中国語への翻訳になることがあります。
+<ul>
+<li>選択された単語の数が多すぎる可能性があります。ChatGPT無料プランでは1メッセージあたりの最大単語数は2048ですが、1800以上の単語を送信すると、この問題が発生する可能性があります。</li>
+<li>これは、1回あたり1400文字以下を選択することで回避できます。</li>
+<li>メニューのタブ<code>Temperature</code>を<code>Creative</code>に切り替えることで、この問題を解決することもできます。
+<ul>
+<li><img data-src="/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/2.png" class="" title="change to Creative"></li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Multi-Language/" rel="tag"><i class="fa fa-tag"></i> Multi-Language</a>
+              <a href="/tags/Translation/" rel="tag"><i class="fa fa-tag"></i> Translation</a>
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Hexo-theme-NexT/" rel="tag"><i class="fa fa-tag"></i> Hexo-theme-NexT</a>
+              <a href="/tags/HowTo/" rel="tag"><i class="fa fa-tag"></i> HowTo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" rel="prev" title="「2023.003|EN」Translate Hexo Articles efficiently using ChatGPT">
+                  <i class="fa fa-angle-left"></i> 「2023.003|EN」Translate Hexo Articles efficiently using ChatGPT
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/" rel="next" title="「2023.004|CN」最佳实践系列：技术文档多语言支持">
+                  「2023.004|CN」最佳实践系列：技术文档多语言支持 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>日本語</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="en" data-href="/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>単語の総数：</span>
+    <span title="単語の総数">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>読書の合計時間 &asymp;</span>
+    <span title="読書の合計時間">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"90f866a60fce787213ac79f07f237045"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>

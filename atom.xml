@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>pwnfan</title>
+  <icon>https://www.pwn.fan/icon.png</icon>
+  
+  <link href="https://www.pwn.fan/atom.xml" rel="self"/>
+  
+  <link href="https://www.pwn.fan/"/>
+  <updated>2023-08-29T16:47:31.000Z</updated>
+  <id>https://www.pwn.fan/</id>
+  
+  <author>
+    <name>pwnfan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>「2023.007|JP」Issuesシリーズ: WSL の Win-KeX で Kali 画面ぼやける</title>
+    <link href="https://www.pwn.fan/ja/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/"/>
+    <id>https://www.pwn.fan/ja/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/</id>
+    <published>2023-08-29T16:47:31.000Z</published>
+    <updated>2023-08-29T16:47:31.000Z</updated>
+    
+    
+    <summary type="html">この記事では、WSL内のWin-KeXを使用してKali（または他のLinuxディストリビューション）に接続する際のGUIインターフェースのぼやけた表示の問題とその解決策について記録しています。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.007|EN」Issues Series: Blurry Screen in Kali When Connecting By Win-KeX In WSL</title>
+    <link href="https://www.pwn.fan/en/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/"/>
+    <id>https://www.pwn.fan/en/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/</id>
+    <published>2023-08-29T15:47:31.000Z</published>
+    <updated>2023-08-29T15:47:31.000Z</updated>
+    
+    
+    <summary type="html">This article documents the issue of blurry GUI interface when connecting to Kali (or other Linux distributions) using Win-KeX within WSL, along with its solution.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.007|CN」Issues 系列: WSL 中使用 Win-KeX 连接 Kali 时界面模糊问题</title>
+    <link href="https://www.pwn.fan/zh-CN/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/"/>
+    <id>https://www.pwn.fan/zh-CN/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/</id>
+    <published>2023-08-29T14:47:31.000Z</published>
+    <updated>2023-08-29T14:47:31.000Z</updated>
+    
+    
+    <summary type="html">本文记录了使用在 WSL 中使用 Win-KeX 连接 Kali（或其它Linux）的 GUI 界面时出现的界面模糊问题及其解决办法。</summary>
+    
+    
+    
+    
+    <category term="Issues" scheme="https://www.pwn.fan/tags/Issues/"/>
+    
+    <category term="WSL" scheme="https://www.pwn.fan/tags/WSL/"/>
+    
+    <category term="Windows" scheme="https://www.pwn.fan/tags/Windows/"/>
+    
+    <category term="Kali" scheme="https://www.pwn.fan/tags/Kali/"/>
+    
+    <category term="Win-KeX" scheme="https://www.pwn.fan/tags/Win-KeX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.006|EN」Burp Suite</title>
+    <link href="https://www.pwn.fan/en/post/Burp-Suite/"/>
+    <id>https://www.pwn.fan/en/post/Burp-Suite/</id>
+    <published>2023-06-23T22:42:00.000Z</published>
+    <updated>2023-07-17T09:00:30.000Z</updated>
+    
+    
+    <summary type="html">protected content, please enter password to continue...</summary>
+    
+    
+    
+    
+    <category term="Sec" scheme="https://www.pwn.fan/tags/Sec/"/>
+    
+    <category term="BurpSuite" scheme="https://www.pwn.fan/tags/BurpSuite/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution</title>
+    <link href="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/"/>
+    <id>https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/</id>
+    <published>2023-05-08T09:54:50.000Z</published>
+    <updated>2023-05-08T09:54:50.000Z</updated>
+    
+    
+    <summary type="html">TagMark is a tag based browser bookmark solution for developers, made by pwnfan.</summary>
+    
+    
+    
+    
+    <category term="Made-by-PwnFan" scheme="https://www.pwn.fan/tags/Made-by-PwnFan/"/>
+    
+    <category term="Tag" scheme="https://www.pwn.fan/tags/Tag/"/>
+    
+    <category term="Bookmark" scheme="https://www.pwn.fan/tags/Bookmark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応</title>
+    <link href="https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/"/>
+    <id>https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/</id>
+    <published>2023-04-04T23:13:15.000Z</published>
+    <updated>2023-04-04T23:13:15.000Z</updated>
+    
+    
+    <summary type="html">この記事では、技術文書の多言語対応のさまざまな方法と、多言語対応のベストプラクティスに関する私の意見を論じます。</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="best-practice" scheme="https://www.pwn.fan/tags/best-practice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.004|EN」Best Practices Series: Multi-Language Support for Technical Documents</title>
+    <link href="https://www.pwn.fan/en/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/"/>
+    <id>https://www.pwn.fan/en/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/</id>
+    <published>2023-04-04T22:43:15.000Z</published>
+    <updated>2023-04-04T22:43:15.000Z</updated>
+    
+    
+    <summary type="html">This article discusses the various ways of providing multi-language support for technical documents and my thoughts on the best practices for multi-language support.</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="best-practice" scheme="https://www.pwn.fan/tags/best-practice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.004|CN」最佳实践系列：技术文档多语言支持</title>
+    <link href="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/"/>
+    <id>https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/</id>
+    <published>2023-04-04T22:13:15.000Z</published>
+    <updated>2023-04-04T22:13:15.000Z</updated>
+    
+    
+    <summary type="html">本文讨论各种技术文档多语言支持的方式及其优缺点，以及我个对多语言支持最佳实践的思考。</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="best-practice" scheme="https://www.pwn.fan/tags/best-practice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.003|JP」ChatGPTを使用してHexo記事を効率的に翻訳</title>
+    <link href="https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/"/>
+    <id>https://www.pwn.fan/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/</id>
+    <published>2023-04-02T23:22:26.000Z</published>
+    <updated>2023-04-02T23:22:26.000Z</updated>
+    
+    
+    <summary type="html">この記事では、ChatGPT関連のVSCodeプラグインを使用して、Hexoの投稿（ソースコード）を他の言語に効率的に翻訳する方法について説明します。</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="HowTo" scheme="https://www.pwn.fan/tags/HowTo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.003|EN」Translate Hexo Articles efficiently using ChatGPT</title>
+    <link href="https://www.pwn.fan/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/"/>
+    <id>https://www.pwn.fan/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/</id>
+    <published>2023-04-02T22:52:26.000Z</published>
+    <updated>2023-04-02T22:52:26.000Z</updated>
+    
+    
+    <summary type="html">This article discusses how to efficiently translate Hexo posts (source code) into other languages using ChatGPT related VSCode plugins.</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="HowTo" scheme="https://www.pwn.fan/tags/HowTo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.003|CN」用 ChatGPT 高效翻译 Hexo 文章</title>
+    <link href="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/"/>
+    <id>https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/</id>
+    <published>2023-04-02T22:22:26.000Z</published>
+    <updated>2023-04-02T22:22:26.000Z</updated>
+    
+    
+    <summary type="html">本文讨论如何借助 ChatGPT 相关的 VSCode 插件，高效地将 Hexo 的文章（post 源码） 翻译为其他语言。</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="HowTo" scheme="https://www.pwn.fan/tags/HowTo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.002|JP」Issuesシリーズ: HexoとNexTテーマの多言語サポートについて</title>
+    <link href="https://www.pwn.fan/ja/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/"/>
+    <id>https://www.pwn.fan/ja/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/</id>
+    <published>2023-04-01T20:38:15.000Z</published>
+    <updated>2023-07-20T13:30:00.000Z</updated>
+    
+    
+    <summary type="html">この記事では、HexoとHexo NexTテーマの設定の過程で遭遇した問題を記録し、最後に技術文書の多言語サポートに関して私の個人的なベストプラクティスを論じます。</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="Issues" scheme="https://www.pwn.fan/tags/Issues/"/>
+    
+    <category term="HowTo" scheme="https://www.pwn.fan/tags/HowTo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.002|EN」Issues Series: About Hexo and NexT Theme Multi-Language Support</title>
+    <link href="https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/"/>
+    <id>https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/</id>
+    <published>2023-04-01T19:38:15.000Z</published>
+    <updated>2023-07-20T13:00:00.000Z</updated>
+    
+    
+    <summary type="html">This article records the problems encountered in the process of configuring Hexo and Hexo NexT Theme, and finally discusses my personal best practice for technical document multi-language support.</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="Issues" scheme="https://www.pwn.fan/tags/Issues/"/>
+    
+    <category term="HowTo" scheme="https://www.pwn.fan/tags/HowTo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.002|CN」Issues系列：关于 Hexo 及 NexT 主题的多语言支持</title>
+    <link href="https://www.pwn.fan/zh-CN/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/"/>
+    <id>https://www.pwn.fan/zh-CN/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/</id>
+    <published>2023-04-01T18:38:15.000Z</published>
+    <updated>2023-07-19T23:00:00.000Z</updated>
+    
+    
+    <summary type="html">本文记录了在配置 Hexo 及 Hexo NexT Theme 过程中遇到的问题及解决方法，最后讨论了我个人认为的技术文档多语言支持的最佳实践</summary>
+    
+    
+    
+    
+    <category term="Multi-Language" scheme="https://www.pwn.fan/tags/Multi-Language/"/>
+    
+    <category term="Translation" scheme="https://www.pwn.fan/tags/Translation/"/>
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="Issues" scheme="https://www.pwn.fan/tags/Issues/"/>
+    
+    <category term="HowTo" scheme="https://www.pwn.fan/tags/HowTo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.001|JP」Hexo NexT アップグレードノート</title>
+    <link href="https://www.pwn.fan/ja/post/Hexo-NexT-Updating-Notes/"/>
+    <id>https://www.pwn.fan/ja/post/Hexo-NexT-Updating-Notes/</id>
+    <published>2023-03-29T23:09:06.000Z</published>
+    <updated>2023-04-16T17:23:00.000Z</updated>
+    
+    
+    <summary type="html">この投稿は、ブログをHexoとNexTにアップグレードする際に遭遇した問題と解決策を記録しています。</summary>
+    
+    
+    
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="blog" scheme="https://www.pwn.fan/tags/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.001|EN」Hexo NexT Upgrade Notes</title>
+    <link href="https://www.pwn.fan/en/post/Hexo-NexT-Updating-Notes/"/>
+    <id>https://www.pwn.fan/en/post/Hexo-NexT-Updating-Notes/</id>
+    <published>2023-03-29T22:09:06.000Z</published>
+    <updated>2023-04-16T16:23:00.000Z</updated>
+    
+    
+    <summary type="html">This post records the problems encountered and solutions during the upgrade of blog to Hexo and NexT.</summary>
+    
+    
+    
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="blog" scheme="https://www.pwn.fan/tags/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2023.001|CN」Hexo NexT 升级笔记</title>
+    <link href="https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/"/>
+    <id>https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/</id>
+    <published>2023-03-29T21:09:06.000Z</published>
+    <updated>2023-04-16T15:23:00.000Z</updated>
+    
+    
+    <summary type="html">本文记录了 blog 升级 Hexo 及 NexT 过程中遇到的问题已经解决办法。</summary>
+    
+    
+    
+    
+    <category term="Hexo" scheme="https://www.pwn.fan/tags/Hexo/"/>
+    
+    <category term="Hexo-theme-NexT" scheme="https://www.pwn.fan/tags/Hexo-theme-NexT/"/>
+    
+    <category term="blog" scheme="https://www.pwn.fan/tags/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2021.001|EN」SMB</title>
+    <link href="https://www.pwn.fan/en/post/SMB/"/>
+    <id>https://www.pwn.fan/en/post/SMB/</id>
+    <published>2021-06-22T09:00:00.000Z</published>
+    <updated>2023-08-22T18:00:00.000Z</updated>
+    
+    
+    <summary type="html">protected content, please enter password to continue...</summary>
+    
+    
+    
+    
+    <category term="Made-by-PwnFan" scheme="https://www.pwn.fan/tags/Made-by-PwnFan/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2021.001|JP」SMB</title>
+    <link href="https://www.pwn.fan/ja/post/SMB/"/>
+    <id>https://www.pwn.fan/ja/post/SMB/</id>
+    <published>2021-06-22T09:00:00.000Z</published>
+    <updated>2023-08-22T19:00:00.000Z</updated>
+    
+    
+    <summary type="html">protected content, please enter password to continue...</summary>
+    
+    
+    
+    
+    <category term="Made-by-PwnFan" scheme="https://www.pwn.fan/tags/Made-by-PwnFan/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「2021.001|CN」SMB</title>
+    <link href="https://www.pwn.fan/zh-CN/post/SMB/"/>
+    <id>https://www.pwn.fan/zh-CN/post/SMB/</id>
+    <published>2021-06-22T09:00:00.000Z</published>
+    <updated>2023-08-22T17:00:00.000Z</updated>
+    
+    
+    <summary type="html">protected content, please enter password to continue...</summary>
+    
+    
+    
+    
+    <category term="Made-by-PwnFan" scheme="https://www.pwn.fan/tags/Made-by-PwnFan/"/>
+    
+  </entry>
+  
+</feed>

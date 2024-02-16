@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="本文讨论如何借助 ChatGPT 相关的 VSCode 插件，高效地将 Hexo 的文章（post 源码） 翻译为其他语言。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.003|CN」用 ChatGPT 高效翻译 Hexo 文章">
+<meta property="og:url" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="本文讨论如何借助 ChatGPT 相关的 VSCode 插件，高效地将 Hexo 的文章（post 源码） 翻译为其他语言。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/1.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/2.png">
+<meta property="article:published_time" content="2023-04-02T22:22:26.000Z">
+<meta property="article:modified_time" content="2023-04-02T22:22:26.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Multi-Language">
+<meta property="article:tag" content="Translation">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo-theme-NexT">
+<meta property="article:tag" content="HowTo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/1.gif">
+
+
+<link rel="canonical" href="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/","path":"zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/","title":"「2023.003|CN」用 ChatGPT 高效翻译 Hexo 文章"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.003|CN」用 ChatGPT 高效翻译 Hexo 文章 | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">翻译的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%9F%E5%8A%A9-chatgpt---genie-ai-%E6%9D%A5%E7%BF%BB%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">借助 ChatGPT - Genie AI 来翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">存在的问题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.003|CN」用 ChatGPT 高效翻译 Hexo 文章 | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.003|CN」用 ChatGPT 高效翻译 Hexo 文章
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-02 22:22:26" itemprop="dateCreated datePublished" datetime="2023-04-02T22:22:26Z">2023-04-02</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>623</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="翻译的要求">翻译的要求</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZnJvbnQtbWF0dGVy">Front-matter<i class="fa fa-external-link-alt"></i></span> 中的 <code>title</code> 和 excerpt 需要翻译</li>
+<li>Hexo 和 NexT 主题都定义了自己的 Tag Plugins(<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnM=">Hexo<i class="fa fa-external-link-alt"></i></span> / <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RhZy1wbHVnaW5zLw==">NexT<i class="fa fa-external-link-alt"></i></span>），用来插入图片、代码等，多数情况下不需要翻译</li>
+<li>翻译的质量要相对高，简单校对确认后就能发布</li>
+</ul>
+<h2 id="借助-chatgpt---genie-ai-来翻译">借助 ChatGPT - Genie AI 来翻译</h2>
+<p>Google 翻译等传统翻译工具难以满足上文中提到的要求，还好 ChatGPT 已问世，它已经基本能满足这些需求。</p>
+<p>由于我使用 VSCode 作为编辑器，因此会首先考虑使用 VSCode 插件来解决问题。截至写这篇文章的时，在 VSCode 插件市场里里搜索 <code>ChatGPT</code>，结果中 <code>ChatGPT - Genie AI</code> 这个插件的下载次数和评分均是最好的。所以我首先选择了它。</p>
+<p><code>Genie AI</code> 实质是调用 ChatGPT 的 API 进行翻译的，初次使用的时候会弹出对话框要求填写 OpenAI 的 API key。</p>
+<p>翻译的步骤如下：</p>
+<ol type="1">
+<li>选中要翻译的 post 源码内容
+<ul>
+<li>如果关联的 OpenAI 的 API key 的账号是 Free Plan 而不是 Plus，发送消息的长度会有上限，当前是 2048。因此这种情况，如果文章较长，只能每次选中小于 2048 字节的 post 源码内容，分多次进行翻译</li>
+</ul></li>
+<li>在 Genie AI 的界面中输入翻译的要求，我输入的是 <code>This is the source code of a post written with Hexo's Next theme. Please help me generate an English translation version, and the code part does not need to be translated</code>，点击 <code>Ask</code> 按钮
+<ul>
+<li>修改其中的 <code>English</code> 为你想要翻译的语言即可</li>
+</ul></li>
+<li>Genie AI 会打开一个新的文件，将翻译后的源码写入其中</li>
+</ol>
+<img data-src="/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/1.gif" class="" title="ChatGPT - Genie AI 将中文 post 翻译为英文">
+<h2 id="存在的问题">存在的问题</h2>
+<ul>
+<li>我发现有中文直译日文的时候的翻译质量，不如 中文=&gt;英文=&gt;日文 的效果。可能之后文章的翻译都得采用后者的方式了</li>
+<li>有时候虽然要求ChatGPT将英语翻译为日文，但是它却最终翻译为了中文
+<ul>
+<li>可能是选择的文字太多，虽然ChatGPT free plan 每次消息字数的上限是2048，但如果发送1800+的字数时，容易出现这种问题</li>
+<li>可以通过每次选择少于1400个字符来规避这个问题</li>
+<li>也可以通过将菜单 <code>Temperature</code> 的 tab 切换为 <code>Creative</code> 来解决
+<ul>
+<li><img data-src="/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/2.png" class="" title="change to Creative"></li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Multi-Language/" rel="tag"><i class="fa fa-tag"></i> Multi-Language</a>
+              <a href="/tags/Translation/" rel="tag"><i class="fa fa-tag"></i> Translation</a>
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Hexo-theme-NexT/" rel="tag"><i class="fa fa-tag"></i> Hexo-theme-NexT</a>
+              <a href="/tags/HowTo/" rel="tag"><i class="fa fa-tag"></i> HowTo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ja/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/" rel="prev" title="「2023.002|JP」Issuesシリーズ: HexoとNexTテーマの多言語サポートについて">
+                  <i class="fa fa-angle-left"></i> 「2023.002|JP」Issuesシリーズ: HexoとNexTテーマの多言語サポートについて
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" rel="next" title="「2023.003|EN」Translate Hexo Articles efficiently using ChatGPT">
+                  「2023.003|EN」Translate Hexo Articles efficiently using ChatGPT <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="en" data-href="/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/zh-CN/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"6ccfce49246eb8d41d6e2e336d265da6"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>

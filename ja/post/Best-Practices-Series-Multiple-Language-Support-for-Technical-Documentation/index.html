@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"検索…","empty":"検索結果が見つかりませんでした: ${query}","hits_time":"${hits} の結果が ${time} ms で見つかりました","hits":"${hits} 件の結果が見つかりました"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="この記事では、技術文書の多言語対応のさまざまな方法と、多言語対応のベストプラクティスに関する私の意見を論じます。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応">
+<meta property="og:url" content="https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="この記事では、技術文書の多言語対応のさまざまな方法と、多言語対応のベストプラクティスに関する私の意見を論じます。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/1.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/2.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/3.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/4.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/5.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/6.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/7.gif">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/8.gif">
+<meta property="article:published_time" content="2023-04-04T23:13:15.000Z">
+<meta property="article:modified_time" content="2023-04-04T23:13:15.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Multi-Language">
+<meta property="article:tag" content="Translation">
+<meta property="article:tag" content="best-practice">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.pwn.fan/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/1.gif">
+
+
+<link rel="canonical" href="https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ja","comments":true,"permalink":"https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/","path":"ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/","title":"「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応 | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="ナビゲーションバーの切り替え" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="検索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>ホーム</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>アーカイブ<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>タグ<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>プロフィール</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>サイトマップ</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>検索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="検索…" spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          見出し
+        </li>
+        <li class="sidebar-nav-overview">
+          概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E8%A1%93%E6%96%87%E6%9B%B8%E3%81%8C%E8%A4%87%E6%95%B0%E8%A8%80%E8%AA%9E%E3%82%92%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E5%BF%85%E8%A6%81%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">技術文書が複数言語をサポートする必要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E3%80%85%E3%81%8C%E6%AC%B2%E3%81%97%E3%81%84%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AF%E4%BD%95%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%81%8B"><span class="nav-number">2.</span> <span class="nav-text">我々が欲しい多言語サポートは何でしょうか？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8F%BE%E5%9C%A8%E3%81%AE%E4%B8%BB%E6%B5%81%E3%81%AE%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">現在の主流の多言語サポート方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#google%E7%BF%BB%E8%A8%B3"><span class="nav-number">3.1.</span> <span class="nav-text">Google翻訳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88"><span class="nav-number">3.2.</span> <span class="nav-text">多言語ページの切り替え</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%B0%E3%81%AA%E3%82%8B%E8%A8%80%E8%AA%9E%E3%81%AE%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%A7%8B%E7%AF%89"><span class="nav-number">3.3.</span> <span class="nav-text">異なる言語のウェブサイトを構築</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%99%E8%AB%87---%E5%A4%96%E5%9B%BD%E6%96%87%E6%9B%B8%E3%81%AE%E8%AA%AD%E3%81%BF%E5%8F%96%E3%82%8A%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E8%A3%9C%E5%8A%A9%E7%BF%BB%E8%A8%B3%E3%83%84%E3%83%BC%E3%83%AB"><span class="nav-number">4.</span> <span class="nav-text">余談 - 外国文書の読み取りのための補助翻訳ツール</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chrome%E5%86%85%E3%81%AEgoogle%E7%BF%BB%E8%A8%B3"><span class="nav-number">4.1.</span> <span class="nav-text">Chrome内のGoogle翻訳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%98%E8%AA%9E%E9%81%B8%E6%8A%9E%E7%BF%BB%E8%A8%B3"><span class="nav-number">4.2.</span> <span class="nav-text">単語選択翻訳</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#online-dictionary-helper"><span class="nav-number">4.2.1.</span> <span class="nav-text">Online Dictionary Helper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yomichan"><span class="nav-number">4.2.2.</span> <span class="nav-text">Yomichan</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#openai-translator"><span class="nav-number">4.2.3.</span> <span class="nav-text">openai-translator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E8%A1%93%E6%96%87%E6%9B%B8%E3%81%AE%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AE%E3%83%99%E3%82%B9%E3%83%88%E3%83%97%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%82%B9"><span class="nav-number">5.</span> <span class="nav-text">技術文書の多言語サポートのベストプラクティス</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#angular.cn%E3%81%AE%E3%83%99%E3%82%B9%E3%83%88%E3%83%97%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%82%B9"><span class="nav-number">5.1.</span> <span class="nav-text">Angular.cnのベストプラクティス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chatgpt%E3%81%8C%E3%82%82%E3%81%9F%E3%82%89%E3%81%99%E5%B8%8C%E6%9C%9B"><span class="nav-number">5.2.</span> <span class="nav-text">ChatGPTがもたらす希望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%83%99%E3%82%B9%E3%83%88%E3%83%97%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%82%B9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A7%81%E3%81%AE%E6%84%8F%E8%A6%8B"><span class="nav-number">5.3.</span> <span class="nav-text">ベストプラクティスに関する私の意見</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E3%81%B3"><span class="nav-number">6.</span> <span class="nav-text">結び</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">ポスト</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">タグ</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ja">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応 | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">投稿日</span>
+
+      <time title="作成日：2023-04-04 23:13:15" itemprop="dateCreated datePublished" datetime="2023-04-04T23:13:15Z">2023-04-04</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閲覧数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閲覧数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="単語数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">単語数：</span>
+      <span>5k</span>
+    </span>
+    <span class="post-meta-item" title="読書の時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">読書の時間 &asymp;</span>
+      <span>18 分</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="技術文書が複数言語をサポートする必要性">技術文書が複数言語をサポートする必要性</h2>
+<ul>
+<li>問題1：多数の主流の開発言語やフレームワークは欧米から始まりましたので、最初のドキュメントはほとんど英語です。開発者として、英語が母国語でなくても、英語の文書を読むことは徐々に必要なスキルになってきています。しかし、開発者が英語版と母国語版を読むときの読書効率は人によって異なります。幸いなことに、これらの非英語の国では、公式の英語文書を翻訳するためのボランティアがしばしば現れます。</li>
+<li>問題2：多くの人が個人ブログを持っています、特にテクノロジー関係者は、自分が遭遇した問題と解決策を自分のブログに記録したいと思っています。これは経験をまとめるだけでなく、他の人と知識を共有するためです。しかし、ブログ記事を書くために使用される言語のため、母国語が他の言語である人は彼の記事を検索または理解することができない可能性があります。これは記事の拡散と知識の共有を制限し、他の人が問題の解決を探す便利さを制限します。</li>
+</ul>
+<h2 id="我々が欲しい多言語サポートは何でしょうか">我々が欲しい多言語サポートは何でしょうか？</h2>
+<ul>
+<li>翻訳品質が高い： これは常に最も重要なことです</li>
+<li>元のテキストへの参照が容易
+<ul>
+<li>翻訳された文と元の文を同じページ上に表示するのが最も良いでしょう
+<ul>
+<li>これにより、文が適切に翻訳されていないことを確認するために元のテキストを簡単に閲覧できます</li>
+</ul></li>
+<li>元のウェブページの構造を変更しないことが最も良いでしょう</li>
+</ul></li>
+<li>手動介入の作業量を最小限に抑える
+<ul>
+<li>先に述べたように、ソフトウェアの公式文書の翻訳を手伝ってくれるボランティアがいることもありますが、問題は、ボランティアが不足しているか、時間が限られているため、最新の公式文書を十分にタイムリーに翻訳することができないということです</li>
+<li>いくつかの多言語サポートソリューションは、他の言語でのページやウェブサイトを運営し、開発およびメンテナンスのコストを増やす可能性が高いです</li>
+</ul></li>
+<li>良好なフィードバックおよび改善メカニズム
+<ul>
+<li>現在の高い翻訳品質を持つChatGPTでさえ、時々不十分な翻訳を行うことがあります</li>
+<li>単語または文の翻訳品質が低い場合は、手動介入、変更、フィードバックのメカニズムが必要です</li>
+<li>翻訳者は、ユーザーフィードバックから翻訳内容について学ぶことができ、翻訳能力を向上させる必要があります。</li>
+</ul></li>
+</ul>
+<h2 id="現在の主流の多言語サポート方法">現在の主流の多言語サポート方法</h2>
+<h3 id="google翻訳">Google翻訳</h3>
+<p>Google翻訳は、ウェブサイトに直接統合できます：</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/1.gif" class="" title="website multiple language support using Google Translate">
+<p>総合評価（スコア0-5）：</p>
+<table>
+<tr style="text-align:center">
+<th style="width:25%">
+評価項目
+</th>
+<th style="width:10%">
+スコア
+</th>
+<th style="width:65%">
+備考
+</th>
+</tr>
+<tr>
+<td>
+翻訳品質が高い
+</td>
+<td>
+2
+</td>
+<td>
+Google翻訳の現段階の品質は高くありません
+</td>
+</tr>
+<tr>
+<td>
+元のテキストを参照しやすい
+</td>
+<td>
+3
+</td>
+<td>
+メニューを切り替えるか、2つのWebページを開く必要があります
+</td>
+</tr>
+<tr>
+<td>
+手動介入の作業量を最小限に抑える
+</td>
+<td>
+4
+</td>
+<td>
+この方法は最も単純で最も原始的で、コストが最も低いため、最も一般的な方法です
+</td>
+</tr>
+<tr>
+<td>
+良好なフィードバックおよび改善メカニズム
+</td>
+<td>
+0.5
+</td>
+<td>
+現在のユーザーは翻訳結果をフィードバックする方法がほとんどありません
+</td>
+</tr>
+</table>
+<h3 id="多言語ページの切り替え">多言語ページの切り替え</h3>
+<p>言語切り替えボタンを使用して、現在のページの別の言語バージョンに切り替えることは、実際には異なるURLのWebページです。 この方法は実際には、ウェブサイトにGoogle翻訳を統合するのと同じです。</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/2.gif" class="" title="different language on different page">
+<p>総合評価（スコア 0-5）：</p>
+<table>
+<tr style="text-align:center">
+<th style="width:25%">
+評価項目
+</th>
+<th style="width:10%">
+スコア
+</th>
+<th style="width:65%">
+備考
+</th>
+</tr>
+<tr>
+<td>
+翻訳品質が高い
+</td>
+<td>
+4.5+
+</td>
+<td>
+上記のように、このタイプの公式ドキュメントは、機械翻訳に手動校正を加えて翻訳する必要があります。
+</td>
+</tr>
+<tr>
+<td>
+元のテキストを参照しやすい
+</td>
+<td>
+3
+</td>
+<td>
+メニューを切り替えるか、2つのウェブページを開く必要があります。
+</td>
+</tr>
+<tr>
+<td>
+手動介入の作業量を最小限に抑える
+</td>
+<td>
+1
+</td>
+<td>
+<ul>
+<li>
+前述したように、機械翻訳に手動校正を加えるには、一定の人的関与が必要です。
+</li>
+<li>
+上記の例では、Python 3.12.0a7が最新の公式開発バージョンであり、新しいコンテンツが追加され、以前のバージョンのコンテンツが変更されます。このようなコンテンツは、ボランティアの数と強度が限られているため、タイムリーに翻訳することはできません。
+</li>
+<li>
+また、独立したページの維持にも一定の作業量が必要です。
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+良好なフィードバックおよび改善メカニズム
+</td>
+<td>
+1.5
+</td>
+<td>
+Pythonのようなオープンソースソフトウェアの場合、そのドキュメントは通常、別々のプロジェクトとして維持されます。ユーザーが翻訳コンテンツを変更したい場合、通常は<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnB5dGhvbi5vcmcvMy9idWdzLmh0bWw=">公式Pythonドキュメントの「Dealing with Bugs」セクション<i class="fa fa-external-link-alt"></i></span>を参照して、イシュートラッカーを介してフィードバックする必要があります。
+</td>
+</tr>
+</table>
+<h3 id="異なる言語のウェブサイトを構築">異なる言語のウェブサイトを構築</h3>
+<p>異なる言語のソフトウェアドキュメントは、異なるドメイン名に配置される場合もあれば、異なるサブドメインに配置される場合もあります。前述の多言語ページの切り替えと比較して、この方法はWebサーバーの維持に対してより多くの作業量が必要です。</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/3.gif" class="" title="different language on different site">
+<p>総合評価（スコア0-5）：</p>
+<table>
+<tr style="text-align:center">
+<th style="width:25%">
+評価項目
+</th>
+<th style="width:10%">
+スコア
+</th>
+<th style="width:65%">
+備考
+</th>
+</tr>
+<tr>
+<td>
+翻訳品質が高い
+</td>
+<td>
+4.5+
+</td>
+<td>
+前述の最後の節で述べた状況と似ています
+</td>
+</tr>
+<tr>
+<td>
+元のテキストを参照しやすい
+</td>
+<td>
+2?
+</td>
+<td>
+Angularの公式ウェブサイトの例に従って、特定の文書ページから他の言語のウェブサイトに直接切り替えることはできません（Angular.cnは独自のソリューションを持っています、これについては後で詳しく説明します）
+</td>
+</tr>
+<tr>
+<td>
+手動介入の作業量を最小限に抑える
+</td>
+<td>
+0.5
+</td>
+<td>
+前述の最後の節で述べた作業量と同様ですが、追加のコストがかかります（追加のWebサーバーの維持）
+</td>
+</tr>
+<tr>
+<td>
+良好なフィードバックおよび改善メカニズム
+</td>
+<td>
+1.5
+</td>
+<td>
+前述の最後の節で述べた状況と似ています
+</td>
+</tr>
+</table>
+<h2 id="余談---外国文書の読み取りのための補助翻訳ツール">余談 - 外国文書の読み取りのための補助翻訳ツール</h2>
+<p>前の記事は、複数の言語をサポートするためのオプションの技術的ソリューションを議論するために、技術ソフトウェアドキュメンテーションWebサイトの開発者の視点からでした。</p>
+<p>一方、文書の読者として、私たちは常に元の外国文書を読むことを主張します。そして、この時点で、補助翻訳ツールを使用して、読書の効率性を高めることができます。</p>
+<p>この記事のタイトルを考慮しているにもかかわらず、これについて話すことはまだ必要です。</p>
+<h3 id="chrome内のgoogle翻訳">Chrome内のGoogle翻訳</h3>
+<p>クライアント（ブラウザなど）内の組み込み機能/プラグインを使用して呼び出すと、実装、翻訳結果、Webサイト側の紹介がGoogle翻訳に似ています。</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/4.gif" class="" title="translate website into another language using Chrome embedded Google Translate">
+<h3 id="単語選択翻訳">単語選択翻訳</h3>
+<p>元のバージョンで公式文書を読んだり、日本語や英語を勉強したりするとき、私はよく単語選択翻訳ツールを使って、知らない単語を調べます。</p>
+<p>いくつかの単語選択ツールをAnkiと組み合わせると、単語選択クエリの後に単語記憶のために<span class="exturl" data-url="aHR0cHM6Ly9hcHBzLmFua2l3ZWIubmV0Lw==">Anki<i class="fa fa-external-link-alt"></i></span>カードを直接作成できます。将来、この強力な記憶ソフトウェア - Ankiを専門に紹介する記事を書きます。</p>
+<h4 id="online-dictionary-helper">Online Dictionary Helper</h4>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvb25saW5lLWRpY3Rpb25hcnktaGVscGVyL2xwcGpkYWprYWNhbmxtcGJiY2RrY2Nqa2RicGxsYWpiP2hsPWVu">Online Dictionary Helper<i class="fa fa-external-link-alt"></i></span>は、多くの辞書を組み込んでおり、様々な主流言語と英語と中国語間の翻訳をサポートしています。単語以外にも文章の選択翻訳が可能ですが、翻訳品質は高くありません。また、選択してAnkiカードを直接作成することもできます。</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/5.gif" class="" title="Word-Selection Translation using Online Dictionary Helper">
+<h4 id="yomichan">Yomichan</h4>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwveW9taWNoYW4vb2dtbmFpbWltZW1qbWJha2NmZWZtbmFoZ2RmaGZhbWk/aGw9ZW4=">Yomichan<i class="fa fa-external-link-alt"></i></span>は主に日本語の単語検索に使用され、様々な辞書をダウンロードできますが、すべての定義は英語です。文章の選択翻訳はサポートしていません。また、選択してAnkiカードを直接作成することもできます。</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/6.gif" class="" title="Word-Selection Translation using Yomichan">
+<h4 id="openai-translator">openai-translator</h4>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lldG9uZS9vcGVuYWktdHJhbnNsYXRvcg==">openai-translator<i class="fa fa-external-link-alt"></i></span>は、最近人気のChatGPTを使用した翻訳を行います。特徴は次のとおりです。</p>
+<ul>
+<li>利点
+<ul>
+<li>比較的高い翻訳品質： ChatGPTが多くの文学、文書、ウェブサイトなどを学習しているため、その翻訳精度は比較的高い。</li>
+<li>特定の反応と改善メカニズム：翻訳品質が低い場合は、<code>polishing</code>ボタンを使用して再翻訳を要求し、通常より良いバージョンを取得できます。</li>
+</ul></li>
+<li>欠点
+<ul>
+<li>プライバシーとセキュリティの問題：これは古い問題であり、単語選択翻訳は、ChatGPTに私たちが見ている内容を漏らします</li>
+<li>単語選択翻訳は翻訳能力を制限する： ChatGPTが翻訳者として機能する場合、記事の文脈を分析・学習することによって、全体の記事の学習品質を最大限に高めることができます。しかし、単語選択翻訳は、部分的な内容のみを提供するのと同等です。クラウド内の履歴学習経験に基づいて翻訳することはできますが、全文を提供した場合と比べて効果は確かに劣ります。</li>
+<li>フィードバックと改善メカニズムを改善する必要があります：特定のテキストを公式ChatGPTを使用して翻訳し、翻訳品質が低い場合は、それにフィードバックしてより良い翻訳の提案を行うことができます。これにより、翻訳能力が向上します。しかし、openai-translatorでは、ChatGPTを「再翻訳」させるだけの<code>polishing</code>ボタンしか使用できず、「どのようにより良い翻訳を行うか」を伝えることはできません。</li>
+</ul></li>
+</ul>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/7.gif" class="" title="Word-Selection Translation using openai-translator">
+<h2 id="技術文書の多言語サポートのベストプラクティス">技術文書の多言語サポートのベストプラクティス</h2>
+<p>前の節から、ウェブ開発者として、技術ソフトウェア文書のウェブサイトを複数言語でサポートするためのベストプラクティスは何かを理解することができます。</p>
+<p>それに基づいて、以下の要件を可能な限り満たす必要があります：</p>
+<ol type="1">
+<li>翻訳品質が高い</li>
+<li>元のテキストを参照しやすい</li>
+<li>手作業の作業量を最小限に抑える</li>
+<li>良好なフィードバックと改善メカニズム</li>
+</ol>
+<p>既存の製品がこれらの問題をどのように解決しているかについて話しましょう。</p>
+<h3 id="angular.cnのベストプラクティス">Angular.cnのベストプラクティス</h3>
+<p><code>2. 元のテキストを参照しやすい</code>を解決するのは難しいです。今まで見たあらゆる翻訳スキームでは、<span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmNuL2RvY3M=">angular.cn<i class="fa fa-external-link-alt"></i></span>だけが巧妙にこの問題を解決しています。</p>
+<img data-src="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/8.gif" class="" title="angular.cnで元のテキストへの参照を容易にしました">
+<p>図から分かるように、<span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmNuL2RvY3M=">angular.cn<i class="fa fa-external-link-alt"></i></span>のドキュメント内のパラグラフをクリックすると、元の英語テキストが表示されます。これは比較や参照のために非常に便利です。中国語の翻訳が不明確な場合に特に役立ちます。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmpwL2RvY3M=">Angular.jp<i class="fa fa-external-link-alt"></i></span>はこの機能を実装していないので、<span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmNuL2RvY3M=">angular.cn<i class="fa fa-external-link-alt"></i></span>の保守者の着想だと思います。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZ3VsYXIvYW5ndWxhci1jbi9pc3N1ZXMvMzMx">angular-cnドキュメントプロジェクトのissue<i class="fa fa-external-link-alt"></i></span>をチェックすると、本当にそうであることが分かり、作者も実装のアイデアを紹介しています。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25nLWRvY3MvYW5ndWxhci1jbi9ibG9iL2NuL2Fpby9jb250ZW50L2d1aWRlL3ZpZXctZW5jYXBzdWxhdGlvbi5tZA==">markdownのソースファイル<i class="fa fa-external-link-alt"></i></span>を見ると、元のバージョンと翻訳されたバージョンが、作者の言った通りに1つのドキュメントに書かれていることが分かります。</p>
+<h3 id="chatgptがもたらす希望">ChatGPTがもたらす希望</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmNuL2RvY3M=">Angular.cn<i class="fa fa-external-link-alt"></i></span> は、「2. 元のテキストを参照しやすい」の問題を解決する良い方法であり、ChatGPTが突然現れ、「翻訳品質が高い」と「3.手作業の作業量を最小限に抑える」の問題をより良く解決できますが、「4.良好なフィードバックと改善メカニズム」の点では一定の制限があります。これについては、openai-translatorを紹介する際に既に話しました。</p>
+<h3 id="ベストプラクティスに関する私の意見">ベストプラクティスに関する私の意見</h3>
+<p>ベストプラクティスを達成するには、上記の4つの点をうまくやる必要があります。私が使用した製品の中には、現在すべてを行うものはありません。もしご存じなら、コメントして共有してください。</p>
+<p>現時点では、全体的により理想的なオプションは<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lldG9uZS9vcGVuYWktdHJhbnNsYXRvcg==">openai-translator<i class="fa fa-external-link-alt"></i></span>のように思えますが、ユーザー側のプラグインです。しかし、ウェブサイトやブラウザープラグインにGoogle Translateを統合することについて議論したように、技術的な実装においてはほとんど差がありません。唯一の違いは、外部API翻訳呼び出しがウェブサーバー側で行われるか、ユーザーのブラウザー側で行われるかということです。</p>
+<p>さて、ベストプラクティスに関する私の詳細な見解について話し合いましょう。ここでは、サーバー側とユーザー側を再び区別せずに:</p>
+<ol type="1">
+<li>翻訳品質が高い：ChatGPT APIなどの高度なツールが呼び出されます。</li>
+<li>元のテキストを参照しやすい：Google Translateと<span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmNuL2RvY3M=">angular.cn<i class="fa fa-external-link-alt"></i></span>の方法を組み合わせます。
+<ul>
+<li>Google Translateの強みは、Webページのソースコード内のHTML要素やJavascriptを変更せずに、Webページ内のテキストだけを正確に置き換えることができるということです。
+<ul>
+<li>Googleは検索エンジンとして始まったため、Webページからのテキストの検出と抽出に関して固有の技術的な利点を持っています。
+<ul>
+<li>Googleは元々検索エンジンであり、強力なクローラーサポートがあるため、Webページからテキストを抽出する豊富な経験を持っています。</li>
+<li>GoogleはChromeブラウザを開発しましたが、そのコア機能はDOMの解析とレンダリングであり、Webページからのテキストの検出と抽出に関しても豊富な経験を持っています。</li>
+</ul></li>
+<li>この効果を自分で実現したい場合、技術的な難しさは無視できませんが、幸いにもChromiumはオープンソースであり、参照することができます。さらに、この問題を解決するために特別に設計された他のオープンソースライブラリもあると思います。</li>
+</ul></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9hbmd1bGFyLmNuL2RvY3M=">angular.cn<i class="fa fa-external-link-alt"></i></span>のマウスクリックにより、元のテキストを隠したり表示したりすることができるのは非常に先進的です。</li>
+<li>上記の2つの方法を組み合わせる方法
+<ol type="1">
+<li>Chromeのような能力を使用してDOMを解析し、テキストを抽出する</li>
+<li>（オプション）関連するすべてのWebページをChatGPTに直接送信して学習する
+<ul>
+<li>ChatGPTの全体的な翻訳効果を改善するために必要であり、前の節で議論しました。</li>
+<li>一般的に、ウェブサイト全体をChatGPTに送信することができますので、ウェブサイト上のすべてのコンテンツを読み取り、特定のページの翻訳準備をすることができます。</li>
+</ul></li>
+<li>現在のWebページのテキストを抽出し、ChatGPTに翻訳を依頼する</li>
+<li>元のDOM要素をコピーし、元のDOM要素の前に追加し、翻訳されたテキストでテキストを置き換える</li>
+<li>CSSを使用して元のDOM要素を隠す</li>
+<li>ユーザーが翻訳されたDOM要素をクリックしたときに元のDOMをCSSとJavascriptを使用して表示する</li>
+</ol></li>
+<li>上記のステップ1〜6は実際にはChatGPTによって完全に行うことができますが、それには適切なトレーニングが必要です。
+<ul>
+<li>Googleと同様に、ChatGPTも強力なWebページDOMの解析とテキストの抽出能力を持っているはずです。</li>
+</ul></li>
+</ul></li>
+<li>手作業の作業量を最小限に抑える：1、2、4がうまくできれば、この点は自然にできているはずです。</li>
+<li>良好なフィードバックと改善メカニズム：ChatGPTの学習と自己改善能力を十分に活用します。ここでは2の「2つの方法を組み合わせる」でのテクニカルな実装について議論を続けます。
+<ol type="1">
+<li>DOM要素内の翻訳に不適切な翻訳が含まれている場合、ユーザーは関連する単語を選択してChatGPTダイアログボックスを呼び出して問題を報告したり、さらに正しい翻訳を伝えることで、それを改善することができます。</li>
+<li>ChatGPTに問題を指摘し、翻訳の指導を与えた後、ChatGPTが再翻訳し、新しい翻訳で関連するDOM要素を更新し、必要なら最適化された翻訳部分を強調表示します。</li>
+</ol></li>
+</ol>
+<h2 id="結び">結び</h2>
+<p>ChatGPTの降臨は、開発者に大きな便利をもたらし、文書の翻訳と外国文書の読書を大きく変えました。しかし、それがそれ以上のことをすることができるため、一部の人々はそれがいくつかの職業を失業させることを懸念しています。私は今のところ心配する必要はないと思います。それを親しんでうまく使えば、私たちはより強力になるだけです。</p>
+<p>もしある日AIがベストプラクティスのようなことを提案し、自動的に実行することができるようになったら、それは人間を置き換えるだけでなく、人類全体を消滅させる可能性もあります :)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Multi-Language/" rel="tag"><i class="fa fa-tag"></i> Multi-Language</a>
+              <a href="/tags/Translation/" rel="tag"><i class="fa fa-tag"></i> Translation</a>
+              <a href="/tags/best-practice/" rel="tag"><i class="fa fa-tag"></i> best-practice</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/en/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/" rel="prev" title="「2023.004|EN」Best Practices Series: Multi-Language Support for Technical Documents">
+                  <i class="fa fa-angle-left"></i> 「2023.004|EN」Best Practices Series: Multi-Language Support for Technical Documents
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/" rel="next" title="「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution">
+                  「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>日本語</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="en" data-href="/en/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>単語の総数：</span>
+    <span title="単語の総数">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>読書の合計時間 &asymp;</span>
+    <span title="読書の合計時間">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8bcf79878eca709fc5e98f0f9ea9a1f5"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>

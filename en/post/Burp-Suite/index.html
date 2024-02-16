@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="protected content, please enter password to continue...">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.006|EN」Burp Suite">
+<meta property="og:url" content="https://www.pwn.fan/en/post/Burp-Suite/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="protected content, please enter password to continue...">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-23T22:42:00.000Z">
+<meta property="article:modified_time" content="2023-07-17T09:00:30.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Sec">
+<meta property="article:tag" content="BurpSuite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.pwn.fan/en/post/Burp-Suite/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.pwn.fan/en/post/Burp-Suite/","path":"en/post/Burp-Suite/","title":"「2023.006|EN」Burp Suite"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.006|EN」Burp Suite | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel"style="display:none">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-crack-burp-suite-up-to-version-2023.6.1"><span class="nav-number">1.</span> <span class="nav-text">How To Crack Burp Suite (Up to version 2023.6.1)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prerequisites"><span class="nav-number">1.1.</span> <span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cracking"><span class="nav-number">1.2.</span> <span class="nav-text">Cracking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-loader-script"><span class="nav-number">1.3.</span> <span class="nav-text">Simple Loader Script</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/en/post/Burp-Suite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.006|EN」Burp Suite | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.006|EN」Burp Suite
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-06-23 22:42:00" itemprop="dateCreated datePublished" datetime="2023-06-23T22:42:00Z">2023-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-07-17 09:00:30" itemprop="dateModified" datetime="2023-07-17T09:00:30Z">2023-07-17</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>393</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="af385d8f0ece344383cab550bd9cd972ce04e049638071b04c75020ff25b5b57" data-keysalt="2f73d749b1ece4bf35876eff76c3d92f60fd703e786a3c063514f22cfae9bc24" data-ivsalt="17238c60af31d1e5483dea04a402cccf2bef5ac1c9aad99fe42adc9729026a8a">
+    c8f7c9454e4532c50b005423b24fa7aa858cfa6638982598eb49a2566de6c86746f6fa5c2a98b8c7d6e1b8581c10b48fa6f33c947ee1a6c2469231962891cda21e55df8bcf511766867aaf9e7fc1cbd936f1c8bba36245d448dc5a2fefd29e100996c220580490690a1a7edd99c1c1bc7c89beb65e65d096893711c5914b9cba522746658659e699ac7d52fdbc9160729dc4a648ec76a6d8e691de4b5a3965fa71485f742a8b06da121d16546dc6c3e3d85c00cbec544c1e93cd5377fa4aed74eb7653959d1df2bc078fa258fdb64364ea80481ca1ac67a768561d672628356bb7077f920104b8b43e55d1a2bbf04ef0fa10dc4ed4853f4d825fac0a608b3c91d600159266ff4f63c41cd86eb41742e2f8a86427f0c58f86528f5a2b3372b2883c8b3df197d51af88efcfadd004af2a98f0a148d112f5596c38c1a696181bbc2abd167141d9763538986f6dee9d99b9a92fd3865096c73b56213b4d9093237e3a27968a9c81891e78aefc15024a2de43f2c7f3e7226ffb9aebb1ece9e495e1c4bb186055dfa852b5cc2474afd07c3a99ac607e561a5aa066b52663ad17d574647b9104552e16aaa86022ea405acf7a260c38efae50c00e625406d054fc40e8b2e525272396490c9d45b39aad468d4780b1393d64db6dfcda9fc5ef8924fca3e2c15ecbb1bbc9d383ab03a21609c49ff78be5d7e7a4aa89a15548e9b5cd92ef8ee61f13826d50e8107ee8cfcb444c7e8f42bdb0c59bca965bf62970e218fb2686b8dc1c8f51469d7553010b1a66530fe63c4ba15688dfc5d52fd1f49d9579ee0d15896baa47a99fe39e9f7f08b526ea6ebba33fa1de6ed725ee3de575bb484c2087c270feb4e401a7a337393e82e484823647d98d1b6d045edcae2d9e72905de97cc4c4e471ff1a9ce6566951168297f8dcb09eff9abd457535ec6db9816a893b2bffa65a2b194766746f40b52540d314a85acc6b42f70d9b8740c86c9e2806050db67aab2ffaa65469489f768eb2d30a2f8ed340c4be2d83af3efa39d6c97447bdc9a77190f04a9cdf68cc84094f1a4e901c77a0bf86f28da0e603386f659a399d3977c9e6c2e48543b586e35eb127efbcd9a933cbb11450fc08f68c02bfe1362c54d39168a36ee38d7a5f804c912804bd911392f86832b5868e674d8f1571ef44734dffb4ac0a5446ec03dc8e0c0d26a718b8c2ad9a020ea09234c5354ebd9b872ba888e6c746c1ddeb6a7e6f98a869e9b208cb0560c98ceb771424cf67447fb7e4ca0f4b359e98d6d02172d36b0fc0334ef6bee7015a1f8f3eca6ecb29acebf3a8363df32f5871abd58a0e407702f7cfd8621c10ff168e17e119e682b9dfae203fae7aa2ea8a5cf4f67294c31e2439cd3e7141ad53ddbb47d40b721220dc6708c0170d59a52b924d2bb9018884713becc7f8149ca5e379a1e56932b7b7b13198672da834928f7bf71b47bae49880f4e1169396772fa03ffd4e3c5390c5392e43090786de65c2ceab3912379fdf6664be962f46f5637e59595be85773f2da7f903f5e45be3ca0bd756e41904a167b02bb70778e12900576e63d28cc26e9aad1bb5b1624fa9e9a768c2913a56519cd52e8941773c9fced308381c64724a3b1e23988a00d9470df12b3b8b23d92c4c989208ff410ec66ea75445a3b87d7a2913abfea6bab732db846ba4af3120fd10f4490ccbe1b7936648cc2aeaeaade80512480f426169eea0fbe4f84f3a4f4610804e3b72480169339d72734c739681ddec3c1a2736526bd065d018b7358343f7f160ceb89572adbaff88ed8eb5e2f9f30d79384314f29351835e14012bd588de75f64209c7f010ab52649a93408f8c3a17ac0c068ff2e3929a41fe8e8be38a7ff45a5253d5cf8b44182a84e7c8750cf263b8fe3ff49a63dc35c451deb3be3b587313e092349f2f2df971f945c97f0bf6fae226951f2268d24946a9fdafc2d261ed7bc69000acade5494a3ea9290f7111f81dc141abb9283ee52d7da1d029f8ea206c0a722a534210a670471fef3a063446f0ee9911daee5b4a5c2c9787882c0ea3cf136cf6822e4827b1740638c1a16c24bbd9dfb843ea5598f7d3ca25cd9f0309eb3f24583b295962b56aea1c18f1b03743ac756672eb86a9fae7ad84885ec6fe7534b29f1b6dd7753ca975c74fca64c24d733fa712275b7ae6dd39bb2233e2a26bfc48f4e0482094932131e98c77656a9da5c5955695ddf93a986c72288d7196d50bcaf1902cbd56b5d7667e6a3e7a59e191cf0f63fe39c4388337f3f1c1fdcf09361af7dbaa8b06d98ba328dc0b8aa54d0a4ab1d1efafca2a5130cdfffc540a9c0125eadad1f2aab9b8fe3e5d38f0173fe962e689f1aa68731869d919d00c03de52f3cc3bbd6901864ed89329bf4601dae57aeb3ff8220659d5f42294005d886c990ef1827f8143a3d0155a06a44f3e27a18518db9cb36e57fd77ef9ea8a7732a5e080e7fbf26484e4a38a8916396818452c3b065ff3441dd0e122d4754ecaab9015210af661a2857d5bcf8651a7edc1f135934084352ac0a7b35060d04e6750e1180c7280b39e903a1f8bef9188b11ccce5248cf1f78d3278ebbf0bbe9bfb22268f7708fd68d20d0464222b5e7031c8000e520833b7d71e0f645f5d9dc32081c98f10a20bb818ff4556c58347d720ee119fd1632be1349f4e619776b58f58bb061588840ccb0d3dc9837fea2bee54ef3e5929694946fb1e73328a3cb7e7154456f19d3030412bf5f43089c6c9e5defd544620b13eec54aba87909fe557bb7c148aa4b939367ae4883aa294b949147571dcf4c20c60bd41694c6d9268265b8183ae9c11e7d985023df56505b8e4485c1a71a2692ec7bddb36d77f2ae08452211ddb1ced4154a7437b43b9c31bba4db480182e02ba172871705d109ac659c3ae8f6ebac6acd77a3c9acb8bf04bba7752fc4fa5c3f1ed1754589e2d3124dcc96a70c386b56391eb8fc0561c8cceaa4c7a7822acb6b720ee5cbf9754431521a12493be4ed2e57b1f92b48b39c5cf589a037039919de49f97f6d42054b27d4a80d55fdaf103c30c100e2bead3663c1304eaa325cdd248925660d6a8966c64b6e9e56f576ee4b6d90bab6c874dabdba60dec1516c98bd551d674b4920335f28daad25f4b14a09c826482e4153788a321e6e872dc9cddd4a444317ab6847a274ba42ab36b4c52cbf853e9c0db2529fb8dbe93bb6a58a80925b521c11e6c4058911f218fcacf89dadbaa42a8301fe9b4bc9ccf07a686da52ccf07eab8c420c42a85d270d56d9ed1ced5483f18ff7daaa73567b9a1f1c077e27d32e2d5a0fb7864cd67c978f9aa6e3c3c473cbe55e03288830b2fef446af63792fbe7c4fa36c4ea3df7c0d4ddd619a0494624379647574ebb7c9b41a7fa266d99e781d16344403e3dea5c1068ecfaba9375e555adc985840d642843cdecd8fa3cad4014a0a384ce1e94de51d49977047443a19593bc94bf17b6aa7754daf27c252d3387fcb23f432a0aa79acbd077d73eff5fbe5d6599d670bedff216603af65ccf2f31e98b1de70e573fe84081dea2cca93fbca9458aa615ca65593cb811ffb56f3aabffb36b2e35fabe692717f1697cf83ea1823cd3ddc50f5846e29f49b4996bdb5d412bf5829a2dba348e606eb40eb650b1a67861dbf6291583d1056016be5ecb83d5d9238482dfe79d0e04f42fe33c561d9f2ffc786ce2def1562770384a43481fe90a41d0861c0e30f35d590e83f64cbb4f505e6bd898db8b931b84817988d6626e79866a4df60a5f86575d5a45c27b50d71affcf5df9a292dd5ff004b9ac6a2a7c4a35ae2411d46267486c16e610ee84326f91fa36e50d449a9832bc95c304dcb903c0b9a92099cd4bfb1c4cdcd68149582474a43320550cfbf6d86801044f3878b0f2db4f2055491ef184ac5fcc152b8706865a9b3a982b1f68f8ccc2b3a667450c439c030443e3058c8c5dc73a363ad679255e8631492e34e666e9e66d6eb2939599bda3a42d142d4f5e09159ee66b02feb16999b581641ddada688fb1b5e3dd353202d2025666e29c189102d10782d4a07f8a1cb05e2e83fdd498ac58acd5254d2b82caa25c37473f4d4aed2abfcf4e9b4db485a95eb376b2ab634fd9932a7416fb28ca0d505ebe2c104cadedfe734bd54439d21c3b82bf1da6bdb4b945e079231e4e7fd4379cf44ce819c6e0cac4a4c2624d889b5380ad5c9b446f011656a0af0f80f253c7f84c7c18deb1e33b8ea9c5b7180eb3f0cf036806bb43dc3f583331f2dd19b618b93bf9ec0ff2b377e6b703c3ab40af8d8b3d62e44e40bb400c8c0fd77bd3591c9a77d26a29810eb5a5da56790cd4f40cefb70b414494be8083604d21c63cc0c6249cc757eca2762c6aba6bf065225f3d3de1c41aec4a4832ab35413e755941a698f408ac11c095134045feb470cc538cbdbf34b898e6c17a2c0f40c15effd7cc27f04b6f0d6f7a58eaa493561082a0531eaa96eaab259e7729d0ceca728ce272b30a58ce2b1abb710542b9993312d26e93d1ace8de69d71e6d71bb5bce1a2690b8a690debaa96641e3a85d4e9b21d2d0c2c506ed98da192a9bc516450d55b7de2ab261ba73bb00f39c124f51e3612989e42a5532a6726395bd00558e455eda44106a5a84d042a96573d27ddcc67cb642ed0c2376af2fe885f21139323df5cbdd4b3ab6b3cba683df001ed9a405e42cccedb13d4d996f0cf85ffccd0b7e4254b618258b5572c5836c5ead4f02ccb5661a22c6aef32f36983c4dd54e34dba2ce459d8dba1fae2b36922e981a83e04aeaa3e1aba5efedc81601d2e086ff41722d361236a33b9b0ac26b38f5f8fb0e0941c99b13a69798e28e6e570f3180214729e9b297144f8db96d4d36ede365a3e2497ed86e406286ac88cbd2fb4ff5ee5239ff5702ff6d5bf01203c032fed164d26caffb2195fa5a34313bc8c92415d57453eb23a0ae509053caea0e05e6f71ad6dc3de021f5861dabefe04e9ecac40230f0ce7616b6d5d6640c3d8e7cabb8a6cd517bdefbf9cb41d12175e5d1c02ea8d13d500b33160048c07ce8964c4dd00d42adbc6cc1c1fcc86cd458cced732dcf2b1fcd67b0bfb3dd7ff78f930caf712f839a3c282e145869ba94172b1bb816fe81408a170dcdd58516d0f063a0fa0e5723fa08bce903df545b97d69fc6f0383b94b221164594bada5364ebf9c1589e08c84ef37ccc36a32474eb7c4e4fa822f0b75a30dc807b963d16e9cdc201ec195cce068aa0adeaee18b05e6315ddc17a146755aa043cc15d58c647833ce05a2ae259b60bbe9682d99f750689a0a71cbe32e152e00b3e9a48217fdb04e2599db49524ba49fd25a5d8f5960e464f48656f8aebaf1b5d2a1a67da610663dffa3381aef380f8b22896ed2e086c468159115a279aef7e5ec7acf0560a12142d312a8d530fd24b02badb5bcea630568abb3544365b70641644ae637d25d28e824100e183d6da41a74ab02a58ce64d623510cb93ea0573533f495da0ed22f7103a7821fa0f9d12fdf35f3c6354991a44f70af41b216e91eaab0344b4dbe72bb97929fbe404729132fb639ae07b1d546953d66c7baa6f77743becd580082bfac82502b3f2f55226dee2358a5da80ff71457ed2701b418100fa3a050a94d9646ab05d7ad8ce4c851ab8b5cae62b8ae6efa563de4e38936cd91fcff62594c1bf2af49e6845214686ee8a0a5211a617b6ca1dd2f2846a414e19e5ccb81de819f55bb81921d4fdf7685f8af4a529f5aab29b8b1a9a9c4edf6dc0e19fe56b0f2275f5deb2b27aa9aea6e368e7114231dfe20dcb67f5d51336ff585a347c455143814f7fd812396c0d0f4ee72119ccec0ec917f4efd15ca23b6a87b6b175a769dc525d3fa91355a7596325c1fe932044fd58a5a8227c0e7f9e3f96a0ea7b3e0b8acb7e800588275ad93b1fe365d447529e4da626c7002c3788ad1ababead487172e0a0ef5cf1187ae2be8cc85e2ce1d9de58cd250c07dcadfdcd33ca383b30c3ab40807ff930e03cb75aa85c58968d7cd51439850e8bfd5791e0641bf01130e59f4c742067fc990bed81448f4474bfb7d589c0f23526d9655fdb5b1ad6d34e2bec824f7bb931088f10a0bbeb2805c44b06b6935ff19e792a60e1c004c89ee2733e2552d15e21ba99a8d448cc0f1931ac0801c8f7863172cd24afda36c00ca2dc9416d8cece99502d32cfa32a31be4ff888294b02b7e40eef09cc66512bf1867909bac84790490ca3f24b1d1a40fbc54b0a9b8cf6f47af4df55c441a9f41f10346b0a97af56660ae7789a790cede122e0a612d25b683c5ec885d084f8761b2c721d6c6c82c358b7583e7c13a27ac4a9dced5ee988d41bb37e709cb7b0cf0a25a425fb9a129458b7bfda7775bd42920cfa7aef42690faf1f439899f1f0e6b2d0768d916a9d53b231e2ead408db4f89c6254c3319f7eaf030c04cc9ba
+  </script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">protected content, please enter password to continue...</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Sec/" rel="tag"><i class="fa fa-tag"></i> Sec</a>
+              <a href="/tags/BurpSuite/" rel="tag"><i class="fa fa-tag"></i> BurpSuite</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/" rel="prev" title="「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution">
+                  <i class="fa fa-angle-left"></i> 「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/post/Issues-Series-Blurry-Screen-in-Kali-When-Connecting-By-Win-KeX-In-WSL/" rel="next" title="「2023.007|CN」Issues 系列: WSL 中使用 Win-KeX 连接 Kali 时界面模糊问题">
+                  「2023.007|CN」Issues 系列: WSL 中使用 Win-KeX 连接 Kali 时界面模糊问题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="en" data-href="/en/post/Burp-Suite/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/Burp-Suite/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/Burp-Suite/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/en/post/Burp-Suite/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f8be25220755e596ec9693139e8e85e4"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>

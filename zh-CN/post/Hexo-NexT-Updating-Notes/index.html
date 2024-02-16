@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="本文记录了 blog 升级 Hexo 及 NexT 过程中遇到的问题已经解决办法。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.001|CN」Hexo NexT 升级笔记">
+<meta property="og:url" content="https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="本文记录了 blog 升级 Hexo 及 NexT 过程中遇到的问题已经解决办法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/1.png">
+<meta property="article:published_time" content="2023-03-29T21:09:06.000Z">
+<meta property="article:modified_time" content="2023-04-16T15:23:00.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo-theme-NexT">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/1.png">
+
+
+<link rel="canonical" href="https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/","path":"zh-CN/post/Hexo-NexT-Updating-Notes/","title":"「2023.001|CN」Hexo NexT 升级笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.001|CN」Hexo NexT 升级笔记 | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">升级的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-pwn.fan"><span class="nav-number">2.</span> <span class="nav-text">关于 pwn.fan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%9F%E8%80%81-blog-%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C"><span class="nav-number">3.</span> <span class="nav-text">跟老 blog 有什么不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">升级中遇到的问题及解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E5%AE%9A%E5%88%B6%E7%9A%84404%E9%A1%B5%E9%9D%A2%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">4.1.</span> <span class="nav-text">自己定制的404页面不生效</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.2.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8-sitemap-%E6%97%B6%E5%BF%BD%E7%95%A5%E6%9F%90%E4%BA%9B%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.2.</span> <span class="nav-text">如何在 sitemap 时忽略某些页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">4.2.2.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.3.</span> <span class="nav-text">多语言问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#google-analytics"><span class="nav-number">4.2.4.</span> <span class="nav-text">Google Analytics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#firebase-%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.5.</span> <span class="nav-text">Firebase 配置问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#github-action-%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.6.</span> <span class="nav-text">Github Action 问题</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.001|CN」Hexo NexT 升级笔记 | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.001|CN」Hexo NexT 升级笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-29 21:09:06" itemprop="dateCreated datePublished" datetime="2023-03-29T21:09:06Z">2023-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-16 15:23:00" itemprop="dateModified" datetime="2023-04-16T15:23:00Z">2023-04-16</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="升级的原因">升级的原因</h2>
+<p>以前的老 blog 是2016年使用 Hexo 和 NexT主题 搭建的，到2020年时这两个项目都有了巨大的变化，有了很多新的强大功能，所以在那时候更新过一次。</p>
+<p>3年后的今天又到了值得更新的时候，与上次不同的是，这次与其说是更新，实际上是重新建站了，因为使用了新的 github 账号 <code>pwnfan</code> 和新的域名 <code>pwn.fan</code>。</p>
+<p>关于老 blog 里的文章，我会搬运那些至今仍未过时的内容到新 blog 里来。</p>
+<h2 id="关于-pwn.fan">关于 pwn.fan</h2>
+<p>pwn 是网络用语，在网络安全圈尤为流行，通常指“突破、超越”的意思，<code>pwn.fan</code> 作为域名，代表一种“热衷于不断创新和突破”的黑客精神。</p>
+<h2 id="跟老-blog-有什么不同">跟老 blog 有什么不同</h2>
+<ul>
+<li>新 blog 使用了 github action：
+<ul>
+<li>这样就可以只用向 blog 的源码 repo(私有) push 新的 blog 源代码，通过这个 repo 里已经配置好了的 github action，就会自动生成静态的页面后 push 到另一个 github page 所在的目录 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9wd25mYW4uZ2l0aHViLmlv">https://github.com/pwnfan/pwnfan.github.io<i class="fa fa-external-link-alt"></i></span></li>
+<li>而老 blog 需要手动运行 hexo deploy 命令部署</li>
+<li>新 blog 使用了 github action 的方式来部署静态文件，不需要项目录中添加 CNAME 文件。而旧 blog 采用从分支部署的方式，再需用向目录中添加 CNAME 文件
+<ul>
+<li>参考 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGh1Yi5jb20vZW4vcGFnZXMvZ2V0dGluZy1zdGFydGVkLXdpdGgtZ2l0aHViLXBhZ2VzL2NvbmZpZ3VyaW5nLWEtcHVibGlzaGluZy1zb3VyY2UtZm9yLXlvdXItZ2l0aHViLXBhZ2VzLXNpdGU=">Configuring a publishing source for your GitHub Pages site<i class="fa fa-external-link-alt"></i></span></li>
+<li>参考 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGh1Yi5jb20vZW4vcGFnZXMvY29uZmlndXJpbmctYS1jdXN0b20tZG9tYWluLWZvci15b3VyLWdpdGh1Yi1wYWdlcy1zaXRlL21hbmFnaW5nLWEtY3VzdG9tLWRvbWFpbi1mb3IteW91ci1naXRodWItcGFnZXMtc2l0ZSNjb25maWd1cmluZy1hbi1hcGV4LWRvbWFpbg==">Managing a custom domain for your GitHub Pages site<i class="fa fa-external-link-alt"></i></span></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="mermaid">
+stateDiagram
+state &quot;github: blog&#x2F;main&quot; as s1
+state &quot;github: pwnfan.github.io&#x2F;gh-pages&quot; as s2
+state &quot;site: https:&#x2F;&#x2F;pwnfan.github.io&quot; as s3
+[*] --&gt; s1: blog update commit
+note right of s1: private
+s1 --&gt; s2: (through github action hook)\n1. build static pages\n 2. auto commit to
+note right of s2: public
+s2 --&gt; s3: served by github
+</pre>
+<ul>
+<li>启用了多语言（英日中），并计划写多语言文章。
+<ul>
+<li>由于我在持续学习英语和日语，过去也尝试过写英文 blog，但使用多语言编写blog的工作量不小，保证高质量的翻译会花掉不少时间。而 ChatGPT 的出现使相对高质量的翻译的工作量减少了很多，所以之后我会尽量同时使用3种语言发布文章。</li>
+<li>如果您只想浏览某一种语言的文章，可以使用页面最下方的语言切换菜单来切换</li>
+</ul></li>
+</ul>
+<h2 id="升级中遇到的问题及解决办法">升级中遇到的问题及解决办法</h2>
+<h3 id="自己定制的404页面不生效">自己定制的404页面不生效</h3>
+<h4 id="问题">问题</h4>
+<p>当访问不存在的页面时，显示的是 github 的 404 页面，如下图：</p>
+<img data-src="/zh-CN/post/Hexo-NexT-Updating-Notes/1.png" class="" title="github 404 page, not ours">
+<h4 id="解决方法">解决方法</h4>
+<p>在 404 页面的 Front-matter 里添加 <code>permalink: /404.html</code>:</p>
+<blockquote><figure class="highlight yaml">
+<table>
+<tr>
+<td class="gutter">
+<pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+</td>
+<td class="code">
+<pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="number">404</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">/404.html</span></span><br><span class="line"><span class="meta">---</span></span><br></pre>
+</td>
+</tr>
+</table>
+</figure>
+<footer><strong>KRISTOF ZERBE</strong><cite><span class="exturl" data-url="aHR0cHM6Ly9raWtvLmlvL3Bvc3QvNDA0LVBhZ2UtaW4tSGV4by1mb3ItR2l0SHViLVBhZ2VzLw==">404 Page in Hexo for GitHub Pages<i class="fa fa-external-link-alt"></i></span></cite></footer></blockquote>
+<h3 id="如何在-sitemap-时忽略某些页面">如何在 sitemap 时忽略某些页面</h3>
+<h4 id="问题-1">问题</h4>
+<p>生成 sitemap 时需要忽略某些页面，比如 404 页面。但 Hexo 和 Next 文档中都没有相关内容</p>
+<h4 id="解决办法">解决办法</h4>
+<p>翻了一下 Hexo 的源码，了解到 sitemap 生成功能是使用了插件 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvLWdlbmVyYXRvci1zaXRlbWFw">hexo-generator-sitemap<i class="fa fa-external-link-alt"></i></span>，插件 README里写了如何忽略某些页面，在页面的 Front-matter 里添加 <code>sitemap: false</code> 即可：</p>
+<blockquote><figure class="highlight yaml">
+<table>
+<tr>
+<td class="gutter">
+<pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+</td>
+<td class="code">
+<pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">lorem</span> <span class="string">ipsum</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2020-01-02</span></span><br><span class="line"><span class="attr">sitemap:</span> <span class="literal">false</span></span><br><span class="line"><span class="meta">---</span></span><br></pre>
+</td>
+</tr>
+</table>
+</figure>
+<footer><strong>hexo-generator-sitemap, README</strong><cite><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvLWdlbmVyYXRvci1zaXRlbWFwI2V4Y2x1ZGUtcG9zdHNwYWdlcw==">Exclude Posts/Pages<i class="fa fa-external-link-alt"></i></span></cite></footer></blockquote>
+<h4 id="多语言问题">多语言问题</h4>
+<p>请参考我针对多语言问题另写的一篇文章 <a href="/zh-CN/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support">「2023.002|CN」Issues系列：关于 Hexo 及 NexT 主题的多语言支持</a></p>
+<h4 id="google-analytics">Google Analytics</h4>
+<p>存在设置后不生效，无法通过 Google Analytics 统计阅读次数多问题。</p>
+<p>分析原因，是由于 <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzL2Fuc3dlci8xMDA4OTY4MT9obD1lbg==">Google Analytics 已经升级到v4版本<i class="fa fa-external-link-alt"></i></span>，<code>tracking_id</code> 的格式已变为 <code>G-XXXXXXXXXX</code>，而旧版本格式是 <code>UA-XXXXXXXXX-X</code>，具体可以参考<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzL2Fuc3dlci85NTM5NTk4P2hsPWVuJnNqaWQ9MTA2Njk4NTkzNjA1MDM3NjU5MC1BUA==">这里<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>如果按照 <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RoaXJkLXBhcnR5LXNlcnZpY2VzL3N0YXRpc3RpY3MtYW5kLWFuYWx5dGljcy5odG1sI0dvb2dsZS1BbmFseXRpY3M=">NexT 官方文档<i class="fa fa-external-link-alt"></i></span>设置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Google Analytics</span></span><br><span class="line"><span class="attr">google_analytics:</span></span><br><span class="line">  <span class="attr">tracking_id:</span> <span class="string">UA-XXXXXXXX-X</span></span><br><span class="line">  <span class="attr">only_pageview:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>是没有问题的。</p>
+<p>但是如果我们将 <code>only_pageview</code> 去掉，或者设置为 <code>true</code>，则无法支持最新的v4版本的<code>tracking_id</code>的，后来我确认了一下<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0L2Jsb2IvYTY2YjkzMDM2YzIwNzY3ZDc5YjhjMWY3ZDNkNmZiYjMyOWVmNjU5Ni9zb3VyY2UvanMvdGhpcmQtcGFydHkvYW5hbHl0aWNzL2dvb2dsZS1hbmFseXRpY3MuanM=">相关源码<i class="fa fa-external-link-alt"></i></span>，确实是这样的。NexT官方文档里目前没有专门指出这个问题，也有人提出过相关的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy81ODE=">issue<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>根据 <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzL2Fuc3dlci8xMDA4OTY4MT9obD1lbg==">[GA4] Introducing the next generation of Analytics, Google Analytics 4<i class="fa fa-external-link-alt"></i></span> 里的说明可以知道，Google 将在2023年7月1日停止对旧版本的 Google Analytics 的支持，这意味着届时使用 <code>UA-XXXXXXXXX-X</code> 这种旧的版本的 Google Analytics 的 <code>tracking_id</code> 的网站将不再能够利用它进行数据统计。建议大家自查上面讨论的相关配置，确保自己的 blog 届时功能正常。关于这个问题也有其他网友讨论过，可以参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLm1hcnNlbi5tZS8yMDIyLzA0LzI2LzIwMjIvZ29vZ2xlX2FuYWx5dGljcy8=">[實作筆記] Hexo 更新 Google Analytics 4<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="firebase-配置问题">Firebase 配置问题</h4>
+<p><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RoaXJkLXBhcnR5LXNlcnZpY2VzL3N0YXRpc3RpY3MtYW5kLWFuYWx5dGljcy5odG1sI0ZpcmViYXNl">Next 官方文档针对 Firebase 配置<i class="fa fa-external-link-alt"></i></span> 的描述几乎是一笔带过，然而实际的设置比较复杂，我遇到了各种问题。这里给出我找到的解决办法的文章，具体问题就不再一一讨论了：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sYW52b3lhZ2VyLmdpdGh1Yi5pby9wb3N0cy8yZWYzYWU2Mi8=">Hexo - Add View Count based on FireBase<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly91dTMuZ2l0bGFiLmlvLzIwMjAvMTIvMDMvc2VyaWVzMDAxL0FOMDA0LUNvbmZpZ3VyZS1oZXhvLXRoZW1lLW5leHQlMjAvI1N0ZXAtNi1maXJlYmFzZS1wYWdlLWNvdW50ZXI=">Application Note #4 - Configure hexo-theme-next<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9hdHN1LWRldmVsb3Blci5uZXQvMjc5Lw==">【2021年最新】React×firebaseにて「Uncaught (in promise) FirebaseError: Missing or insufficient permissions.」エラーが出力される原因とその対策<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90ZWNoLXBhcnJvdC5jb20vZmlyZWJhc2UvZmlyZWJhc2VlcnJvci1taXNzaW5nLW9yLWluc3VmZmljaWVudC1wZXJtaXNzaW9ucy8=">【解決】FirebaseError: Missing or insufficient permissions.<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9maXJlYmFzZS5nb29nbGUuY29tL2RvY3MvZmlyZXN0b3JlL3NlY3VyaXR5L2dldC1zdGFydGVkP2hsPWVuJmF1dGh1c2VyPTAjZGVueS1hbGw=">https://firebase.google.com/docs/firestore/security/get-started?hl=en&amp;authuser=0#deny-all<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9maXJlYmFzZS5nb29nbGUuY29tL2RvY3MvZmlyZXN0b3JlL3NlY3VyaXR5L3J1bGVzLXN0cnVjdHVyZT9hdXRodXNlcj0wJmhsPWVu">Structuring Cloud Firestore Security Rules<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9rb21peWFrLW1pY3JvLXRlY2guaGF0ZW5hZGlhcnkuanAvZW50cnkvMjAyMS8wMy8yMi8yMjE2MDg=">Fix: 'The Cloud Firestore API is not available for Datastore Mode projects.'<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>这里专门说一下其中涉及到的几个问题。</p>
+<p>第一个，<code>Firestore Database</code> 默认工作模式是 <code>Datastore mode</code> ，所以文章阅读统计之类的信息在 Firebase 的主界面 <code>Firestore Database</code> 里看不到的，而是藏在 Google Cloud 中，这里直接给出：<span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmNsb3VkLmdvb2dsZS5jb20vZmlyZXN0b3JlL2RhdGFiYXNlcy8tZGVmYXVsdC0vZGF0YS9wYW5lbC8=">https://console.cloud.google.com/firestore/databases/-default-/data/panel/<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>第二个，<code>Firebase Database</code> role 的写法可能引发安全问题，我这里给出根据 Firebase 官方文档的安全写法，其中的 <code>articles</code> 是你创建的 collection 名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rules_version = &#x27;2&#x27;;</span><br><span class="line">service cloud.firestore &#123;</span><br><span class="line">  match /databases/&#123;database&#125;/documents &#123;</span><br><span class="line">    match /articles/&#123;article&#125; &#123;</span><br><span class="line">      allow read, write;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="github-action-问题">Github Action 问题</h4>
+<p>前文提到我使用了 github action 来做 CI/CD，为了避免重复造轮子我直接使用了 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYTExYmxhY2svaGV4by1hY3Rpb24=">sma11black / hexo-action<i class="fa fa-external-link-alt"></i></span>，它是用于自动化部署的 Hexo CI/CD Action。</p>
+<p>实际使用时发现在build的时候会报错 <code>[hexo-renderer-pandoc] pandoc exited with code null.</code></p>
+<p>根据 <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RoaXJkLXBhcnR5LXNlcnZpY2VzL21hdGgtZXF1YXRpb25zLmh0bWw/aGlnaGxpZ2h0PXBhbmRvYyNSZW5kZXItRW5naW5lcw==">NexT主题文档<i class="fa fa-external-link-alt"></i></span>，渲染数学/化学等科学公式的引擎有两个可供选择：</p>
+<ul>
+<li>MathJax
+<ul>
+<li>它需要依赖于 <code>hexo-renderer-pandoc</code></li>
+</ul></li>
+<li>KaTeX</li>
+</ul>
+<p>对比二者后，我选择使用的是 <code>MathJax</code>，在配置文件里设置为它，且在本地安装了 <code>hexo-renderer-pandoc</code>。</p>
+<p>问题出现在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYTExYmxhY2svaGV4by1hY3Rpb24=">sma11black / hexo-action<i class="fa fa-external-link-alt"></i></span> 制作的 docker 镜像中没有安装 <code>hexo-renderer-pandoc</code>，造成为的 blog 通过它编译的时候会因为缺少 <code>hexo-renderer-pandoc</code> 而失败。</p>
+<p>我在自己fork的仓库 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9ibG9nLWdpdGh1Yi1hY3Rpb24=">pwnfan/blog-github-action<i class="fa fa-external-link-alt"></i></span> 中 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9ibG9nLWdpdGh1Yi1hY3Rpb24vY29tbWl0L2NjMjQ0OTgxMmNlN2VlMDc3M2MzNTgyNGNmNWYzMjMxZDk1NzFhMzE=">修复了pandoc的问题<i class="fa fa-external-link-alt"></i></span>。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Hexo-theme-NexT/" rel="tag"><i class="fa fa-tag"></i> Hexo-theme-NexT</a>
+              <a href="/tags/blog/" rel="tag"><i class="fa fa-tag"></i> blog</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/en/post/SMB/" rel="prev" title="「2021.001|EN」SMB">
+                  <i class="fa fa-angle-left"></i> 「2021.001|EN」SMB
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/en/post/Hexo-NexT-Updating-Notes/" rel="next" title="「2023.001|EN」Hexo NexT Upgrade Notes">
+                  「2023.001|EN」Hexo NexT Upgrade Notes <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="en" data-href="/en/post/Hexo-NexT-Updating-Notes/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/Hexo-NexT-Updating-Notes/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/Hexo-NexT-Updating-Notes/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/zh-CN/post/Hexo-NexT-Updating-Notes/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"b4232b58c68d1ebbf0718158ab2adee3"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>

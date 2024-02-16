@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="This article records the problems encountered in the process of configuring Hexo and Hexo NexT Theme, and finally discusses my personal best practice for technical document multi-language support.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.002|EN」Issues Series: About Hexo and NexT Theme Multi-Language Support">
+<meta property="og:url" content="https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="This article records the problems encountered in the process of configuring Hexo and Hexo NexT Theme, and finally discusses my personal best practice for technical document multi-language support.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-01T19:38:15.000Z">
+<meta property="article:modified_time" content="2023-07-20T13:00:00.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Multi-Language">
+<meta property="article:tag" content="Translation">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo-theme-NexT">
+<meta property="article:tag" content="Issues">
+<meta property="article:tag" content="HowTo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/","path":"en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/","title":"「2023.002|EN」Issues Series: About Hexo and NexT Theme Multi-Language Support"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.002|EN」Issues Series: About Hexo and NexT Theme Multi-Language Support | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-requirements"><span class="nav-number">1.</span> <span class="nav-text">New Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#features-of-hexo-and-next-theme-multi-language-support"><span class="nav-number">2.</span> <span class="nav-text">Features of Hexo and NexT Theme Multi-Language Support</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#version"><span class="nav-number">2.1.</span> <span class="nav-text">Version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#related-documents"><span class="nav-number">2.2.</span> <span class="nav-text">Related Documents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#related-configuration"><span class="nav-number">2.3.</span> <span class="nav-text">Related Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo"><span class="nav-number">2.3.1.</span> <span class="nav-text">Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-theme"><span class="nav-number">2.3.2.</span> <span class="nav-text">NexT Theme</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#issues"><span class="nav-number">3.</span> <span class="nav-text">Issues</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#issue1partially-solved-multi-language-support-not-working"><span class="nav-number">3.1.</span> <span class="nav-text">Issue#1[Partially Solved]: Multi-language Support Not Working</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#missing-hexo-generator-index-i18n-plugin"><span class="nav-number">3.1.1.</span> <span class="nav-text">Missing hexo-generator-index-i18n Plugin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i18n_dir-and-post-article-association-problem"><span class="nav-number">3.1.2.</span> <span class="nav-text">i18n_dir and Post Article Association Problem</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#issue2solved-multi-language-post-assets-containing-issues"><span class="nav-number">3.2.</span> <span class="nav-text">Issue#2[Solved]: Multi-Language Post Assets Containing Issues</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#expected-outcome"><span class="nav-number">3.2.1.</span> <span class="nav-text">Expected Outcome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#issue-analysis-relevant-information"><span class="nav-number">3.2.2.</span> <span class="nav-text">Issue Analysis &amp;&amp; Relevant Information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">3.2.3.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#issue3-resolved-bug-in-next-theme-when-switching-languages-on-different-pages"><span class="nav-number">3.3.</span> <span class="nav-text">Issue#3 [Resolved]: Bug in NexT Theme when switching languages on different pages ⚠️</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#issue-details"><span class="nav-number">3.3.1.</span> <span class="nav-text">Issue Details</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#expected-outcome-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">Expected Outcome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#issue-analysis-related-information"><span class="nav-number">3.3.3.</span> <span class="nav-text">Issue Analysis &amp;&amp; Related Information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solution-1"><span class="nav-number">3.3.4.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#issue4-how-to-translate"><span class="nav-number">3.4.</span> <span class="nav-text">Issue#4: How to Translate?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#another-way-to-support-multiple-languages-in-hexo-next-theme"><span class="nav-number">4.</span> <span class="nav-text">Another Way to Support Multiple Languages in Hexo NexT Theme?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#best-practice-for-multi-language-support-for-technical-documents"><span class="nav-number">5.</span> <span class="nav-text">Best Practice for Multi-Language Support for Technical Documents</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.002|EN」Issues Series: About Hexo and NexT Theme Multi-Language Support | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.002|EN」Issues Series: About Hexo and NexT Theme Multi-Language Support
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-01 19:38:15" itemprop="dateCreated datePublished" datetime="2023-04-01T19:38:15Z">2023-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-07-20 13:00:00" itemprop="dateModified" datetime="2023-07-20T13:00:00Z">2023-07-20</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>8 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="new-requirements">New Requirements</h2>
+<p>My old blog used a single language <code>en</code>, but published posts in two languages, and the two had no overlap. That is, the article was either Chinese or English.</p>
+<p>I plan to publish each post in three languages, Chinese, Japanese and English, in this new blog, so I fiddled with the multi-language support of Hexo and NexT Theme, and here I record the problems encountered.</p>
+<h2 id="features-of-hexo-and-next-theme-multi-language-support">Features of Hexo and NexT Theme Multi-Language Support</h2>
+<div class="note info"><h3 id="version">Version</h3>
+<ul>
+<li>"hexo": "6.3.0"</li>
+<li>"hexo-theme-next": "8.17.1"</li>
+</ul>
+</div>
+<h3 id="related-documents">Related Documents</h3>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvaW50ZXJuYXRpb25hbGl6YXRpb24=">Hexo Docs&#x2F; Customization &#x2F; Internationalization (i18n)<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RoZW1lLXNldHRpbmdzL2ludGVybmF0aW9uYWxpemF0aW9uLmh0bWw=">NexT Docs &#x2F; Theme Settings &#x2F; i18n<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="related-configuration">Related Configuration</h3>
+<p>Refer to the official documents of Hexo and NexT Theme respectively to find the relevant configuration</p>
+<h4 id="hexo">Hexo</h4>
+<figure class="highlight yaml"><figcaption><span>_config.yml (Hexo)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">en</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">ja</span></span><br><span class="line"></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:category/:lang/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">en</span></span><br><span class="line"></span><br><span class="line"><span class="attr">i18n_dir:</span> <span class="string">:lang</span></span><br><span class="line"></span><br><span class="line"><span class="attr">new_post_name:</span> <span class="string">:lang/:title.md</span> <span class="comment"># File name of new posts</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">single_language_index:</span> <span class="literal">false</span>  <span class="comment"># show multiple language posts in homepage</span></span><br></pre></td></tr></table></figure>
+<h4 id="next-theme">NexT Theme</h4>
+<figure class="highlight yaml"><figcaption><span>_config.next.yml (NexT Theme)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Show multilingual switcher in footer.</span></span><br><span class="line"><span class="attr">language_switcher:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="issues">Issues</h2>
+<h3 id="issue1partially-solved-multi-language-support-not-working">Issue#1[Partially Solved]: Multi-language Support Not Working</h3>
+<p>I pointed out the problem I encountered when configuring multi-language support in the official document of NexT Theme:</p>
+<blockquote><p>the doc missed a necessary plugin <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hjYXRsaXUvaGV4by1nZW5lcmF0b3ItaW5kZXgtaTE4bg==">hexo-generator-index-i18n<i class="fa fa-external-link-alt"></i></span>, what's more, in my test you should also create a post with each language, or the related i18n_dir will not be generated. The latter may be a bug.</p>
+<footer><strong>pwnfan, "NexT User Docs – Starting to Use – Internationalization"</strong><cite><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzL3RoZW1lLXNldHRpbmdzL2ludGVybmF0aW9uYWxpemF0aW9uLmh0bWw=">comment about problem in multi-language setting<i class="fa fa-external-link-alt"></i></span></cite></footer></blockquote>
+<p>There are two problems here:</p>
+<ol type="1">
+<li>The document does not mention that <em>you must install a multi-language related plugin <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hjYXRsaXUvaGV4by1nZW5lcmF0b3ItaW5kZXgtaTE4bg==">hexo-generator-index-i18n<i class="fa fa-external-link-alt"></i></span> for multi-language support</em>.</li>
+<li>You must publish posts in multiple languages, and the related multi-language folder <code>i18n_dir</code> will be created.</li>
+</ol>
+<p>Let's discuss these two problems separately.</p>
+<h4 id="missing-hexo-generator-index-i18n-plugin">Missing hexo-generator-index-i18n Plugin</h4>
+<p>The solution is simple, just use the following command to install it:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-index-i18n --save</span><br></pre></td></tr></table></figure>
+<h4 id="i18n_dir-and-post-article-association-problem">i18n_dir and Post Article Association Problem</h4>
+<p>First, let's describe the problem in detail. Use the following command to view my blog source (Hexo) directory, as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  Blog tree pwnfan -L 1</span><br><span class="line">pwnfan</span><br><span class="line">├── README.md</span><br><span class="line">├── _config.next.yml</span><br><span class="line">├── _config.yml</span><br><span class="line">├── db.json</span><br><span class="line">├── node_modules</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">└── themes</span><br><span class="line"></span><br><span class="line">6 directories, 6 files</span><br><span class="line"></span><br><span class="line">(base) ➜  Blog tree pwnfan/public -L 1</span><br><span class="line">pwnfan/public</span><br><span class="line">├── 404.html</span><br><span class="line">├── LICENSE</span><br><span class="line">├── about</span><br><span class="line">├── archives</span><br><span class="line">├── atom.xml</span><br><span class="line">├── css</span><br><span class="line">├── en</span><br><span class="line">│   └── index.html  <span class="comment"># Hexo NexT Theme Home Page(original English)</span></span><br><span class="line">├── images</span><br><span class="line">├── index.html</span><br><span class="line">├── ja</span><br><span class="line">│   └── index.html  <span class="comment"># Hexo NexT Theme Home Page(Japanese Translations)</span></span><br><span class="line">├── lib</span><br><span class="line">├── post</span><br><span class="line">├── search.xml</span><br><span class="line">├── sitemap.txt</span><br><span class="line">├── sitemap.xml</span><br><span class="line">├── tags</span><br><span class="line">└── zh-CN</span><br><span class="line">    └── index.html  <span class="comment"># Hexo NexT Theme Home Page(Simple Chinese Translations)</span></span><br></pre></td></tr></table></figure>
+<h3 id="issue2solved-multi-language-post-assets-containing-issues">Issue#2[Solved]: Multi-Language Post Assets Containing Issues</h3>
+<h4 id="expected-outcome">Expected Outcome</h4>
+<p>Post assets are resources that Hexo's posts need to reference, the most common of which are images.</p>
+<p>If we follow the design concept of Hexo, when writing multi-language posts, we need to create multiple versions of the same blog post in different languages, such as:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># default language is English</span></span><br><span class="line">hexo new post <span class="string">&quot;About Hexo and NexT Theme Mult-Language Support&quot;</span></span><br><span class="line"><span class="comment"># japanese</span></span><br><span class="line">hexo new post --lang ja <span class="string">&quot;About Hexo and NexT Theme Mult-Language Support&quot;</span></span><br><span class="line"><span class="comment"># simple Chinese</span></span><br><span class="line">hexo new post --lang zh-CN <span class="string">&quot;About Hexo and NexT Theme Mult-Language Support&quot;</span></span><br></pre></td></tr></table></figure>
+<p>At this time, the _posts directory structure is as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span>/_posts</span><br><span class="line">├── en</span><br><span class="line">│   └── Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support.md</span><br><span class="line">├── images</span><br><span class="line">├── ja</span><br><span class="line">│   └── About-Hexo-and-NexT-Theme-Mult-Language-Support.md</span><br><span class="line">└── zh-CN</span><br><span class="line">    └── About-Hexo-and-NexT-Theme-Mult-Language-Support.md</span><br></pre></td></tr></table></figure>
+<p>In this case, if the article needs to reference pictures, it may encounter the following two situations:</p>
+<ul>
+<li>The same pictures are used for different language posts: the most common situation</li>
+<li>Some pictures used by different language posts may be different: less common, but occasionally there will be such requirements, such as the pictures we make contain text descriptions, and will be made according to the corresponding language version containing the corresponding language text description.
+<ul>
+<li>Summarize this requirement: both exist the same assets (such as pictures), and also support language-related independent assets (such as pictures)</li>
+<li>This raises a question: how should the picture (Assets) folder be organized to meet the above requirements?</li>
+</ul></li>
+</ul>
+<h4 id="issue-analysis-relevant-information">Issue Analysis &amp;&amp; Relevant Information</h4>
+<p>We know that there are two ways to organize the Assets folder in Hexo:</p>
+<ul>
+<li>All posts share the same Assets folder, such as the images folder.
+<ul>
+<li>Although this is the default way, I personally do not recommend it.</li>
+<li>When there are more articles, resources such as pictures are all included in the same folder. Although they can be distinguished by file name, it will still be very messy.</li>
+<li>Its advantage is that it can conveniently reuse assets previously added in different places such as post, but in fact in such blog applications, the reuse rate of assets is extremely low.</li>
+</ul></li>
+<li>Each post has its own assets folder.
+<ul>
+<li>I prefer this way.</li>
+<li>Reference documents:
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvYXNzZXQtZm9sZGVycw==">Hexo Docs - Asset Folders<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnMjSW5jbHVkZS1Bc3NldHM=">Hexo Docs - Tag Plugins - Include Assets<i class="fa fa-external-link-alt"></i></span></li>
+</ul></li>
+<li>Specific setting method: set <code>post_asset_folder: true</code> in the Hexo configuration file <code>_config.yml</code>.</li>
+<li>This way also encounters problems when dealing with the above requirement "that is, there are both the same assets (such as pictures) and language-related independent assets (such as pictures)".
+<ul>
+<li>You can crudely store the same pictures in the corresponding language assets folders, but there will be duplicate files which will waste disk space and remote git repository space.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>After we set <code>post_asset_folder: true</code> and add multi-language configuration, the folder structure is as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  pwnfan git:(dev) ✗ tree <span class="built_in">source</span>/_posts                             </span><br><span class="line"><span class="built_in">source</span>/_posts</span><br><span class="line">├── en</span><br><span class="line">│   ├── Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support</span><br><span class="line">│   └── Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support.md</span><br><span class="line">├── images</span><br><span class="line">├── ja</span><br><span class="line">│   ├── About-Hexo-and-NexT-Theme-Mult-Language-Support</span><br><span class="line">│   └── About-Hexo-and-NexT-Theme-Mult-Language-Support.md</span><br><span class="line">└── zh-CN</span><br><span class="line">    ├── Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support</span><br><span class="line">    └── Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support.md</span><br></pre></td></tr></table></figure>
+<h4 id="solution">Solution</h4>
+<p>To meet the requirement of "both existing assets (such as pictures) and language-related independent assets (such as pictures)", the following methods can be used:</p>
+<ol type="1">
+<li><p>As recommended in the previous section, set <code>post_asset_folder: true</code> in the Hexo configuration file <code>_config.yml</code>.</p></li>
+<li><p>For the same assets: if the original post language is English, then translate it into Chinese post and Japanese post respectively. Then you can directly use the asset of the English post in the Chinese and Japanese posts to avoid the problem of storing duplicate files mentioned earlier.</p>
+<ul>
+<li>Here it needs to be specially explained that when referring to external assets in Chinese and Japanese posts, you cannot use relative paths, but need to use this "absolute path" <code>&#123;% img /en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/1.png "image title" %&#125;</code>
+<ul>
+<li>The reason why the "absolute path" contains quotation marks is because it is not a real absolute path, but an absolute path based on the directory <code>&#123;blog_source_folder&#125;/public/</code> as the root directory.</li>
+</ul></li>
+</ul></li>
+<li><p>Language-related independent assets: just put them in the corresponding language assets folder.</p></li>
+</ol>
+<h3 id="issue3-resolved-bug-in-next-theme-when-switching-languages-on-different-pages">Issue#3 [Resolved]: Bug in NexT Theme when switching languages on different pages ⚠️</h3>
+<h4 id="issue-details">Issue Details</h4>
+<ul>
+<li>Currently, when switching languages back and forth on different pages (home page, post, 404, tags, etc.) under the NexT Theme, there might be an issue where the switched page returns a 404 error.</li>
+</ul>
+<h4 id="expected-outcome-1">Expected Outcome</h4>
+<ul>
+<li>Home Page:
+<ul>
+<li>Language switch should be available.</li>
+<li>The current NexT Theme already supports this type of language switching.</li>
+</ul></li>
+<li>Non-post Pages (about, 404, tags, etc.):
+<ul>
+<li>The current NexT Theme returns a 404 error after switching to another language on these pages because it doesn't support customizing multiple languages for these types of pages, but the generated switch URL specifies a language, leading to this bug. To keep things simple, the expectation is to disable language switching or make it invalid on these pages.</li>
+<li>If users switch languages on these pages, even if we make the switch ineffective as described in the expected way, meaning keeping the URL unchanged, NexT's implementation mechanism will still trigger a page refresh. To achieve a no-refresh behavior, the required modifications are relatively complex. To keep things simple, we will leave it unchanged.</li>
+</ul></li>
+<li>Post Pages:
+<ul>
+<li>Language switching should be allowed, and if there's no corresponding post in the chosen language, it should return a 404 error.</li>
+<li>The current NexT Theme doesn't handle custom permalink language conversion defined in the config very well. This is another bug that needs to be fixed.</li>
+</ul></li>
+</ul>
+<h4 id="issue-analysis-related-information">Issue Analysis &amp;&amp; Related Information</h4>
+<p>The reason for this problem is due to a bug in the NexT Theme when generating URLs for multiple languages. It fails to fully consider the current path, permalink format, and their relation to multiple languages.</p>
+<p>The problematic code can be found at</p>
+<figure class="highlight plaintext"><figcaption><span>bug in Line #10 function `i18n_path(language)`</span><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0L2Jsb2IvYzU5NjE1NWVmOTU2ZGVmMDFhNGE3MzlmYWFiNmVmMTZkMjZmZmIzNi9sYXlvdXQvX3BhcnRpYWxzL2xhbmd1YWdlcy5uamsjTDEw">hexo-theme-next/layout/_partials/languages.njk<i class="fa fa-external-link-alt"></i></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if theme.language_switcher and languages.length &gt; 1 %&#125;</span><br><span class="line">  &lt;div class=&quot;languages&quot;&gt;</span><br><span class="line">    &lt;label class=&quot;lang-select-label&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-language&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123; language_name(page.lang) &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-angle-up&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;select class=&quot;lang-select&quot; data-canonical=&quot;&quot; aria-label=&quot;&#123;&#123; __(&#x27;accessibility.select_lang&#x27;) &#125;&#125;&quot;&gt;</span><br><span class="line">      &#123;% for language in languages %&#125;</span><br><span class="line marked">        &lt;option value=&quot;&#123;&#123; language &#125;&#125;&quot; data-href=&quot;&#123;&#123; i18n_path(language) &#125;&#125;&quot; selected=&quot;&quot;&gt;</span><br><span class="line">          &#123;&#123; language_name(language) &#125;&#125;</span><br><span class="line">        &lt;/option&gt;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<p><code>i18n_path(language)</code> code:</p>
+<figure class="highlight javascript"><figcaption><span>bug in i18n_path()</span><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0L2Jsb2IvYzU5NjE1NWVmOTU2ZGVmMDFhNGE3MzlmYWFiNmVmMTZkMjZmZmIzNi9zY3JpcHRzL2hlbHBlcnMvZW5naW5lLmpzI0wxMDA=">hexo-theme-next/scripts/helpers/engine.js<i class="fa fa-external-link-alt"></i></span></figcaption><table><tr><td class="gutter"><pre><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get page path given a certain language tag</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">helper</span>.<span class="title function_">register</span>(<span class="string">&#x27;i18n_path&#x27;</span>, <span class="keyword">function</span>(<span class="params">language</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; path, lang &#125; = <span class="variable language_">this</span>.<span class="property">page</span>;</span><br><span class="line">  <span class="keyword">const</span> base = path.<span class="title function_">startsWith</span>(lang) ? path.<span class="title function_">slice</span>(lang.<span class="property">length</span> + <span class="number">1</span>) : path;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">url_for</span>(<span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.languages.indexOf(language) === <span class="number">0</span> ? <span class="string">&#x27;&#x27;</span> : <span class="string">&#x27;/&#x27;</span> + language&#125;</span>/<span class="subst">$&#123;base&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="solution-1">Solution</h4>
+<p>I attempted to solve this issue in my forked version with the following commit:</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9oZXhvLXRoZW1lLW5leHQvY29tbWl0LzRhNGNlNjMwMWJhNWUwZjdlMDVlZWEzNTNjNWM3NzFlMTAyZGM4YmI=">https://github.com/pwnfan/hexo-theme-next/commit/4a4ce6301ba5e0f7e05eea353c5c771e102dc8bb<i class="fa fa-external-link-alt"></i></span></p>
+<p>I implemented and used a new function called <code>i18n_path_pwnfan</code>. However, as the "Expected Outcome" section contains my personal subjective viewpoints and requirements, it might not be suitable for an official pull request. Therefore, I made the fix only in my own forked repository:</p>
+<figure class="highlight plaintext"><figcaption><span>invoke customized function `i18n_path_pwnfan()`</span><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9oZXhvLXRoZW1lLW5leHQvYmxvYi80YTRjZTYzMDFiYTVlMGY3ZTA1ZWVhMzUzYzVjNzcxZTEwMmRjOGJiL2xheW91dC9fcGFydGlhbHMvbGFuZ3VhZ2VzLm5qayNMMTA=">hexo-theme-next/layout/_partials/languages.njk<i class="fa fa-external-link-alt"></i></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if theme.language_switcher and languages.length &gt; 1 %&#125;</span><br><span class="line">  &lt;div class=&quot;languages&quot;&gt;</span><br><span class="line">    &lt;label class=&quot;lang-select-label&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-language&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123; language_name(page.lang) &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-angle-up&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;select class=&quot;lang-select&quot; data-canonical=&quot;&quot; aria-label=&quot;&#123;&#123; __(&#x27;accessibility.select_lang&#x27;) &#125;&#125;&quot;&gt;</span><br><span class="line">      &#123;% for language in languages %&#125;</span><br><span class="line marked">        &lt;option value=&quot;&#123;&#123; language &#125;&#125;&quot; data-href=&quot;&#123;&#123; i18n_path_pwnfan(language) &#125;&#125;&quot; selected=&quot;&quot;&gt;</span><br><span class="line">          &#123;&#123; language_name(language) &#125;&#125;</span><br><span class="line">        &lt;/option&gt;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>source code of customized function `i18n_path_pwnfan()`</span><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9oZXhvLXRoZW1lLW5leHQvYmxvYi80YTRjZTYzMDFiYTVlMGY3ZTA1ZWVhMzUzYzVjNzcxZTEwMmRjOGJiL3NjcmlwdHMvaGVscGVycy9lbmdpbmUuanMjTDEwOQ==">hexo-theme-next/scripts/helpers/engine.js<i class="fa fa-external-link-alt"></i></span></figcaption><table><tr><td class="gutter"><pre><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get page path given a certain language tag, pwnfan_customized</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">helper</span>.<span class="title function_">register</span>(<span class="string">&#x27;i18n_path_pwnfan&#x27;</span>, <span class="keyword">function</span> (<span class="params">language</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; path, lang &#125; = <span class="variable language_">this</span>.<span class="property">page</span>;</span><br><span class="line">  <span class="keyword">let</span> base = path;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (path === <span class="string">&quot;index.html&quot;</span>) &#123; <span class="comment">// homepage without language path</span></span><br><span class="line">    base = <span class="string">`<span class="subst">$&#123;language&#125;</span>/<span class="subst">$&#123;path&#125;</span>`</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (path === <span class="string">`<span class="subst">$&#123;lang&#125;</span>/index.html`</span>) &#123;  <span class="comment">// homepage with a language path</span></span><br><span class="line">    <span class="keyword">if</span> (language === <span class="string">&quot;en&quot;</span>) &#123;</span><br><span class="line">      language = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    base = path.<span class="title function_">replace</span>(<span class="string">`<span class="subst">$&#123;lang&#125;</span>/`</span>, <span class="string">`<span class="subst">$&#123;language&#125;</span>/`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (!path.<span class="title function_">endsWith</span>(<span class="string">&quot;.html&quot;</span>)) &#123;  <span class="comment">// post page</span></span><br><span class="line">    <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">`<span class="subst">$&#123;lang&#125;</span>/`</span>)) &#123;</span><br><span class="line">      base = <span class="string">`<span class="subst">$&#123;language&#125;</span>/<span class="subst">$&#123;path.slice(lang.length + <span class="number">1</span>)&#125;</span>`</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      base = path.<span class="title function_">replace</span>(<span class="string">`/<span class="subst">$&#123;lang&#125;</span>/`</span>, <span class="string">`/<span class="subst">$&#123;language&#125;</span>/`</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">url_for</span>(base);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="issue4-how-to-translate">Issue#4: How to Translate?</h3>
+<p>Please refer to another post <a href="/en/post/Translate-Hexo-Articles-efficiently-using-ChatGPT/">「2023.003/EN」Translate Hexo Articles efficiently using ChatGPT</a> for reference.</p>
+<h2 id="another-way-to-support-multiple-languages-in-hexo-next-theme">Another Way to Support Multiple Languages in Hexo NexT Theme?</h2>
+<p>As we can see, the multi-language support and inclusion of Hexo and NexT Theme are:</p>
+<ul>
+<li>Multi-language support for basic elements of homepages, such as menus, etc.</li>
+<li>Multi-language posts</li>
+</ul>
+<p>Another way I can think of to achieve multi-language posts indirectly is:</p>
+<ol type="1">
+<li><p>Set Hexo and NexT Theme to only one language, such as <code>en</code></p></li>
+<li><p>Take advantage of the Tabs in the Tag Plugins exclusive to NexT Theme, which can indirectly realize multi-language. Refer to the following code:</p>
+<p><figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">tabs</span> Multiple Language Post Example %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- tab English --&gt;</span></span></span><br><span class="line"><span class="language-xml">Where are you from?</span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- endtab --&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- tab 日本語 --&gt;</span></span></span><br><span class="line"><span class="language-xml">ご出身地はどちらですか。</span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- endtab --&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- tab 中文 --&gt;</span></span></span><br><span class="line"><span class="language-xml">你来自哪里？</span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- endtab --&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endtabs</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure></p>
+<p>The effect is as follows:</p>
+<p><div class="tabs" id="multiple-language-post-example"><ul class="nav-tabs"><li class="tab active"><a href="#multiple-language-post-example-1">English</a></li><li class="tab"><a href="#multiple-language-post-example-2">日本語</a></li><li class="tab"><a href="#multiple-language-post-example-3">中文</a></li></ul><div class="tab-content"><div class="tab-pane active" id="multiple-language-post-example-1"><p>Where are you from?</p></div><div class="tab-pane" id="multiple-language-post-example-2"><p>ご出身地はどちらですか。</p></div><div class="tab-pane" id="multiple-language-post-example-3"><p>你来自哪里？</p></div></div></div></p></li>
+</ol>
+<p>The problems with this approach are:</p>
+<ul>
+<li>No multi-language support for basic elements of homepages, such as menus, etc.</li>
+<li>There are two ways to organize Tags in posts (taking en/ja/zh-CN as an example)
+<ul>
+<li>Only use 3 Tags in the post, each containing all the content in different languages
+<ul>
+<li>Advantages: relatively simple and clear code</li>
+<li>Disadvantages
+<ul>
+<li>Tabs have a fixed style frame, affecting the page style of the entire blog</li>
+<li>ToC generation has problems</li>
+</ul></li>
+</ul></li>
+<li>For each paragraph in the post, use independent 3 language Tags
+<ul>
+<li>Advantages:
+<ul>
+<li>ToC works normally</li>
+<li>Does not affect the overall page style of the blog</li>
+</ul></li>
+<li>Disadvantages:
+<ul>
+<li>When there are many paragraphs in the article, a large number of Tags {% tabs %} need to be used, which is cumbersome and the code is not neat</li>
+<li>ToC can only use one language</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="best-practice-for-multi-language-support-for-technical-documents">Best Practice for Multi-Language Support for Technical Documents</h2>
+<p>The previous section records the attempts and thoughts made to meet my own needs for writing multi-language posts with Hexo and NexT Theme.</p>
+<p>So which is the most elegant among the multi-language documents of technical documents I have seen so far? I wrote another article <a href="/en/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation">「2023.004|EN」Best Practices Series: Multi-Language Support for Technical Documents</a> to discuss this issue.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Multi-Language/" rel="tag"><i class="fa fa-tag"></i> Multi-Language</a>
+              <a href="/tags/Translation/" rel="tag"><i class="fa fa-tag"></i> Translation</a>
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Hexo-theme-NexT/" rel="tag"><i class="fa fa-tag"></i> Hexo-theme-NexT</a>
+              <a href="/tags/Issues/" rel="tag"><i class="fa fa-tag"></i> Issues</a>
+              <a href="/tags/HowTo/" rel="tag"><i class="fa fa-tag"></i> HowTo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/" rel="prev" title="「2023.002|CN」Issues系列：关于 Hexo 及 NexT 主题的多语言支持">
+                  <i class="fa fa-angle-left"></i> 「2023.002|CN」Issues系列：关于 Hexo 及 NexT 主题的多语言支持
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ja/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/" rel="next" title="「2023.002|JP」Issuesシリーズ: HexoとNexTテーマの多言語サポートについて">
+                  「2023.002|JP」Issuesシリーズ: HexoとNexTテーマの多言語サポートについて <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="en" data-href="/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/en/post/Issues-Series-About-Hexo-and-NexT-Theme-Multi-Language-Support/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"61d76bd2736f89b710f0fbef9ad4e5e5"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>

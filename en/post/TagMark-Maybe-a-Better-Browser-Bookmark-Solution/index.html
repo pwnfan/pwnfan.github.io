@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="//fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.pwn.fan","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content="TagMark is a tag based browser bookmark solution for developers, made by pwnfan.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution">
+<meta property="og:url" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/">
+<meta property="og:site_name" content="pwnfan">
+<meta property="og:description" content="TagMark is a tag based browser bookmark solution for developers, made by pwnfan.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/google-built-in-bookmark-collector.gif">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/chrome-extension-diigo-web-collector.gif">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/google-chrome-built-in-bookmark-manager.gif">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/diigo-my-library.gif">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/my-bookmarks-in-chrome-built-in-bookmark-manager.png">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/overview-of-my-tags.png">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/the-filter-not-work-as-expect.gif">
+<meta property="og:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/max-number-of-bookmark-in-one-page-of-diigo.gif">
+<meta property="article:published_time" content="2023-05-08T09:54:50.000Z">
+<meta property="article:modified_time" content="2023-05-08T09:54:50.000Z">
+<meta property="article:author" content="pwnfan">
+<meta property="article:tag" content="Made-by-PwnFan">
+<meta property="article:tag" content="Tag">
+<meta property="article:tag" content="Bookmark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/google-built-in-bookmark-collector.gif">
+
+
+<link rel="canonical" href="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/","path":"en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/","title":"「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution | pwnfan</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6RJXBFSE"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-0V6RJXBFSE","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="pwnfan" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">pwnfan</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">20</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">17</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tagmark-⭐"><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz"><i class="fa fa-beat fa-trademark fa-fw"></i>TagMark ⭐</span></li><li class="menu-item menu-item-404-🕹️"><a href="/404" rel="section"><i class="fa fa-gamepad fa-fw"></i>404 🕹️</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#what-is-tagmark"><span class="nav-number">1.</span> <span class="nav-text">What Is TagMark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-is-a-browser-bookmark-solution"><span class="nav-number">2.</span> <span class="nav-text">What Is A &quot;Browser Bookmark Solution&quot;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why-do-we-need-tags-for-bookmarks"><span class="nav-number">3.</span> <span class="nav-text">Why Do We Need Tags For Bookmarks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why-not-diigo-bookmark-manager-diigo-my-library"><span class="nav-number">4.</span> <span class="nav-text">Why Not Diigo Bookmark Manager (Diigo My Library)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tagmarks-solution-how-to-build-your-own-tagmark"><span class="nav-number">5.</span> <span class="nav-text">TagMark&#39;s Solution: How To Build Your Own TagMark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#faq"><span class="nav-number">6.</span> <span class="nav-text">FAQ</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pwnfan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pwnfan</p>
+  <div class="site-description" itemprop="description">pwn for fun, coding for love</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pwnfan"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9wd25mYW4=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pwnfan"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnB3bmZhbkBwcm90b24ubWU=" title="E-Mail → mailto:pwnfan@proton.me"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="/" title="&#x2F;">blank</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pwnfan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pwnfan">
+      <meta itemprop="description" content="pwn for fun, coding for love">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution | pwnfan">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「2023.005|EN」TagMark: Maybe a Better Browser Bookmark Solution
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-05-08 09:54:50" itemprop="dateCreated datePublished" datetime="2023-05-08T09:54:50Z">2023-05-08</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>7 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="what-is-tagmark">What Is TagMark</h2>
+<p>TagMark is a tag-based bookmark solution I created for:</p>
+<ul>
+<li>Those who have a multitude of bookmarks and want to efficiently organize, easily retrieve, and share them with others.</li>
+<li>Individuals who frequently work with GitHub, have starred numerous repositories, yet struggle with how to efficiently retrieve and effectively utilize this vast amount of information.</li>
+</ul>
+<p>Watch this video <code>TagMark - Introduction and User Guide</code> for details:</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/0F5bkU90Tmc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>Here is the demo page of TagMark, which collected all my bookmarks:</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz">https://pwnfan.github.io/my-tagmarks<i class="fa fa-external-link-alt"></i></span> / <span class="exturl" data-url="aHR0cHM6Ly90YWdtYXJrLnB3bi5mYW4=">https://tagmark.pwn.fan<i class="fa fa-external-link-alt"></i></span></p>
+<p>Features of the page:</p>
+<ul>
+<li>Substantial tag based bookmarks
+<ul>
+<li>2700+ tagged bookmarks (1800+ curated Github Repos) mainly focus on cybersecurity and related development</li>
+<li>1000+ tags with detailed tag definitions</li>
+</ul></li>
+<li>Full featured tags
+<ul>
+<li>tag definitions (show / hide definition by left click on tags)</li>
+<li>tag overview with counts</li>
+<li>color difference depending on counts</li>
+</ul></li>
+<li>Simple but powerful header filter for each column
+<ul>
+<li>thick client: static, pure frontend and js based, so it's fast responding</li>
+<li>simple and useful filter grammar</li>
+<li>quickly input tag name into filter by just a right click</li>
+<li>press CTRL/CMD with left click in any filter input to call out multiple language document (English / Japanese / Chinese)</li>
+</ul></li>
+<li>Supporting for URL GET parameters based filtering
+<ul>
+<li>static, pure frontend and js based</li>
+<li>easy for sharing</li>
+</ul></li>
+<li>Columns related things
+<ul>
+<li>detailed Github repository information</li>
+<li>suppressible columns</li>
+</ul></li>
+<li>Template Tag Doc</li>
+</ul>
+<h2 id="what-is-a-browser-bookmark-solution">What Is A "Browser Bookmark Solution"</h2>
+<p>Before introducing details about TagMark, let's talk about what is a browser bookmark solution.</p>
+<p>In my opinion, a browser bookmark solution usually contains two basic parts:</p>
+<ol type="1">
+<li><code>a browser bookmark collector</code></li>
+</ol>
+<ul>
+<li>for collecting(bookmark) urls for us when we view them in browser and consider their page content are useful and want to get back to later</li>
+<li>optional products
+<ul>
+<li>browser built-in bookmark collector <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/google-built-in-bookmark-collector.gif" class="" title="Google Chrome built-in bookmark collector"></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvcG5ocGxnanBjbGtuaWdqcGNjYmNubWljZ2NpZW9qYmg=">Diigo Web Collector(Google Chrome Extension)<i class="fa fa-external-link-alt"></i></span> <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/chrome-extension-diigo-web-collector.gif" class="" title="Diigo Web Collector(Google Chrome Extension)"></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tL3Rvb2xzL2RpaWdvbGV0">Diigolet<i class="fa fa-external-link-alt"></i></span>: a light-weight version of Diigo Web Collector, and Diigolet is not a Chrome extension, but just a piece of javascript code.</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li><code>a bookmark manager</code></li>
+</ol>
+<ul>
+<li>should have a good mechanism to store and structure the collectted bookmarks</li>
+<li>should have a GUI for viewing, finding specified bookmark(s) we want</li>
+<li>optional products
+<ul>
+<li>browser built-in bookmark manager <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/google-chrome-built-in-bookmark-manager.gif" class="" title="Google Chrome built-int bookmark manager"></li>
+<li><a target="_blank" rel="noopener" href="https://www.diigo.com/"><code>My Libraby</code> in Diigo</a> <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/diigo-my-library.gif" class="" title="Diigo - My Library"></li>
+</ul></li>
+</ul>
+<h2 id="why-do-we-need-tags-for-bookmarks">Why Do We Need Tags For Bookmarks</h2>
+<p>The content of most modern web page(url) is complex and may refer to multiple topics, making it difficult to classify it into one category.</p>
+<p>However, traditional bookmark solutions such as browser built-in bookmark solution stores bookmarks in a hierarchical category(tree) structure.</p>
+<p>Take my bookmarks for example:</p>
+<img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/my-bookmarks-in-chrome-built-in-bookmark-manager.png" class="" title="my bookmarks in Google Chrome built-in bookmark manager">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Bookmark Bar</span><br><span class="line">├── ...</span><br><span class="line">├── Sec         <span class="comment"># Cyber Security</span></span><br><span class="line">│   ├── Tools       <span class="comment"># Tools relating to Cyber Security</span></span><br><span class="line">│   ├── ...</span><br><span class="line">├── Tools       <span class="comment"># Tools</span></span><br><span class="line">│   ├── Charts      <span class="comment"># Tools for marking Charts</span></span><br></pre></td></tr></table></figure>
+<p><code>Bookmark Bar &gt; Sec</code> folder has a child-folder <code>Bookmark Bar &gt; Sec &gt; Tools</code> and sibiling-folder <code>Bookmark Bar &gt; Tools</code>, what is confused and disordered, may be I should create a new <code>Bookmark Bar &gt; Tools &gt; Sec</code> 😵‍💫 ? This is caused by the diversity of morden page(url) content and limititon from the hierarchical category(tree) structure of the bookmark manager.</p>
+<p>This can be easily solved by a non-hierarchical and equative-level structure of tags instead of troditional catogary. This is what Diigo and TagMark do.</p>
+<h2 id="why-not-diigo-bookmark-manager-diigo-my-library">Why Not Diigo Bookmark Manager (Diigo My Library)</h2>
+<p>I hava tried several tag based bookmark solutions, Diigo is the only one meeting my needs.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvcG5ocGxnanBjbGtuaWdqcGNjYmNubWljZ2NpZW9qYmg=">Diigo Web Collector(Google Chrome Extension)<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tLw==">Diigo My Libraby<i class="fa fa-external-link-alt"></i></span> are enough for most of my use cases, and are more powerful than just a bookmark manager:</p>
+<blockquote><ul>
+<li>Bookmarks: Still the easiest way to collect the sites you want to get back to later.</li>
+<li>Tags: Tag your collected web pages with relevant terms for easy future retrieval</li>
+<li>Highlights: Highlight text directly on any web page for personal reference or collaboration.</li>
+<li>Sticky Notes: Add text, comments or reminders directly on any web page with sticky notes.</li>
+<li>Outliner: Structure your research by automated streamlining through Diigo or by your own personal customization.</li>
+<li>Groups: Share your research with colleagues, classmates and friends through our collaborative platform for knowledge sharing.</li>
+<li>Archived Web Pages: Store your online resources with annotations intact forever, regardless of whether the original source is still active. (Premium Feature)</li>
+</ul>
+<footer><strong>Diigo</strong><cite>Diigo Home Page <https://www.diigo.com/> Diigo at a glance</cite></footer></blockquote>
+<p><br></p>
+<p>Diigo also has <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tL3Rvb2xz">iPhone adn Android apps<i class="fa fa-external-link-alt"></i></span> able to share your bookmarks between PC and Mobile. This is great.</p>
+<p>but Diigo My Libraby still has some weak points in my use cases:</p>
+<ul>
+<li>Tags
+<ul>
+<li>there is nothing to explain a tag: usually we name a tag name as short as possible to opitimize the appearance when one page has quite a number of tags, but sometimes short words like acronym has confused meanings and we cannot recall the right one when we originally create the tag. So If there is a way for me to connect a tag to the definition of it, that will be great. <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/overview-of-my-tags.png" class="" title="an overview of my tags, and I have forgotten the meaning of tag [dex]"></li>
+</ul></li>
+<li>Filter
+<ul>
+<li>the filter speed is not fast: I have about 240 bookmarks and 190 tags in my library, which is just my collection of the past 3 years, and this is not a plenty of data in my opinion</li>
+<li>the filtering function is limited: suppose I want to fitler <u>security</u> (tag <code>sec</code>) tools which do <u>reconnaissance</u> (tag <code>recon</code>) jobs, <em><strong>and</strong></em> should be implemented in <u>Python</u> (tag <code>python</code>) <em><strong>or</strong></em> <u>Golang</u> (tag <code>golang</code>) , the filter apply a <em><strong>or</strong></em> relation instead of the wanted <em><strong>and</strong></em> <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/the-filter-not-work-as-expect.gif" class="" title="the filter does not work as what I expect"></li>
+<li>a filter option for filtering added time of the bookmark is wanted: maybe a related filter for each property(information) of a bookmark is the ultimate solution</li>
+</ul></li>
+<li>GUI
+<ul>
+<li>an alternative dark theme is wanted</li>
+<li>the max limit of showing the bookmarks one page is not enough: max number is 96, and going to the next page is sometimes slow <img data-src="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/max-number-of-bookmark-in-one-page-of-diigo.gif" class="" title="max numbers of bookmarks in one page is 96"></li>
+</ul></li>
+<li>Other
+<ul>
+<li>Github Information is wanted: as a cyber security practitioner and aslo a developer, a lot of pages collected by me in the bookmark are often Github Repos. Github repos with more stars and a higher update frequency of the code are usually more guaranteed for high quality and rapid frequent bug fix releases. So when I need to choose an Open Source tool/module/library/software from Github, those information is really important.</li>
+</ul></li>
+</ul>
+<h2 id="tagmarks-solution-how-to-build-your-own-tagmark">TagMark's Solution: How To Build Your Own TagMark</h2>
+<ul>
+<li><code>browser bookmark collector which support tags</code>: here we directly use <span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvcG5ocGxnanBjbGtuaWdqcGNjYmNubWljZ2NpZW9qYmg=">Diigo Web Collector(Google Chrome Extension)<i class="fa fa-external-link-alt"></i></span> (or <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tL3Rvb2xzL2RpaWdvbGV0">Diigolet<i class="fa fa-external-link-alt"></i></span>) as our collector, which supports tags and is good enough</li>
+<li><code>bookmark manager</code>: TagMark related projects
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi90YWdtYXJrLXB5">tagmark-py (this repo)<i class="fa fa-external-link-alt"></i></span>
+<ul>
+<li>exporting tagged bookmarked data from other third party services, e.g. diigo</li>
+<li>converting other bookmark formats into Tagmark format, i.e <code>tagmarks.jsonl</code></li>
+<li>checking every tag has a been defined, i.e. checking tag consistency in <code>tagmarks.jsonl</code> and <code>tags.json</code></li>
+<li>getting tag definitions automatically with ChatGPT, i.e setting the values of the key <code>definition</code> in <code>tags.json</code></li>
+<li>making document from a template containing tag related syntaxes, i.e making <code>tag-doc.md</code></li>
+</ul></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi90YWdtYXJrLXVp">tagmark-ui<i class="fa fa-external-link-alt"></i></span>
+<ul>
+<li>a web page showing <code>tagmarks.jsonl</code>, <code>tags.json</code> and related docs</li>
+</ul></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9teS10YWdtYXJrcw==">my-tagmarks<i class="fa fa-external-link-alt"></i></span>
+<ul>
+<li>my own bookmarks data stored as TagMark data <code>tagmarks.jsonl</code> and <code>tags.json</code></li>
+<li>a Github Pages repo serving <code>tagmark-ui</code> and showing all my bookmarks, i.e <span class="exturl" data-url="aHR0cHM6Ly9wd25mYW4uZ2l0aHViLmlvL215LXRhZ21hcmtz">https://pwnfan.github.io/my-tagmarks<i class="fa fa-external-link-alt"></i></span> / <span class="exturl" data-url="aHR0cHM6Ly90YWdtYXJrLnB3bi5mYW4=">https://tagmark.pwn.fan<i class="fa fa-external-link-alt"></i></span></li>
+<li>a Github README including curated topics (i.e. tags) from my personal bookmarks</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>here we give a typical workflow of building your own TagMark solution</p>
+<script src="//gist.github.com/d5e809bd9d10c7a21bacbe25d5c80d2f.js"></script>
+<p>Steps note and customizing suggestions:</p>
+<ul>
+<li>Steps requiring manual works
+<ul>
+<li>#1:
+<ul>
+<li>the first time involves a full workload of tagging all your bookmarks, which may take a considerable amount of time, but subsequent efforts only involve incremental tasks, which are much more easier</li>
+<li>diigo related resources
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvZGlpZ28td2ViLWNvbGxlY3Rvci1jYXB0dS9wbmhwbGdqcGNsa25pZ2pwY2NiY25taWNnY2llb2piaA==">Chrome Extension: Diigo Web Collector - Capture and Annotate<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tLw==">Diigo Website<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tL3Rvb2xzL2V4cG9ydA==">Diigo Tools / Export<i class="fa fa-external-link-alt"></i></span></li>
+</ul></li>
+</ul></li>
+<li>#2a.x
+<ul>
+<li>use alternative #2b is suggested</li>
+<li>#2a.1 does't work well recently, may be due to some problems on the <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tL3Rvb2xzL2V4cG9ydA==">Diigo Tools / Export<i class="fa fa-external-link-alt"></i></span> service side，which impelled me to made an alternative #2b instead</li>
+<li>notice that #2b exploits a web API of diigo and acts like a crawler to retrieve your own bookmarks, it's a trade-off option so we'd better not frequently use it, and I have added some sleep time between successive requests</li>
+<li>Diigo has <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGlpZ28uY29tL2FwaV9rZXlzL25ldy8=">its own official API<i class="fa fa-external-link-alt"></i></span> for retrieving bookmarks but it is a premium (paid) feature, may be it's a better option to become a premium user and add the related retrieving feature (plugin) into <code>tagmark-py</code> <code>export</code> subcommand</li>
+</ul></li>
+<li>#4.3
+<ul>
+<li>optional but suggested if you want reading-friendly tag names and exact tag definitions shown in the web page (i.e. tagmark-ui)</li>
+<li>similar to #1, the first time involves a full workload, which may take a considerable amount of time, but subsequent efforts only involve incremental tasks and are much more easier</li>
+</ul></li>
+<li>#6.x
+<ul>
+<li>optional, if you don't need a TagMark tag doc, you can skip these steps</li>
+<li>may take a considerable amount of time if you have many bookmarks and tags, and want to well categorize them into different topics, but fortunately this is just an one-off work</li>
+</ul></li>
+</ul></li>
+<li>#7, #8, and #9 form a unit in which the prerequisite dependencies are Steps #1 through #6. However, Steps #7, #8, and #9 are independent of each other and have no interdependencies</li>
+<li>Some steps are auto done by Github Actions, most of which are located in repo <code>my-tagmarks</code>
+<ul>
+<li>to ensure these actions function correctly, you may need to set repo <code>vars</code> and <code>secrets</code> which will be used in these actions
+<ul>
+<li>#6.2 and #6.3
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9teS10YWdtYXJrcy9ibG9iL21haW4vLmdpdGh1Yi93b3JrZmxvd3MvdXBkYXRlLXRhZy1kb2MueW1s">my-tagmarks/.github/workflows/update-tag-doc.yml<i class="fa fa-external-link-alt"></i></span>
+<ul>
+<li><code>$&#123;&#123; secrets.GH_PAT_TAGMARK &#125;&#125;</code></li>
+</ul></li>
+</ul></li>
+<li>#7:
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9teS10YWdtYXJrcy9ibG9iL21haW4vLmdpdGh1Yi93b3JrZmxvd3MvdXBkYXRlLXRhZ21hcmstZGF0YS55bWw=">my-tagmarks/.github/workflows/update-tagmark-data.yml<i class="fa fa-external-link-alt"></i></span>
+<ul>
+<li><code>$&#123;&#123; secrets.GH_PAT_TAGMARK &#125;&#125;</code></li>
+<li><code>$&#123;&#123; vars.TAGMARK_DATA_EXPIRED_HOURS &#125;&#125;</code></li>
+</ul></li>
+</ul></li>
+<li>#8: trigger when <code>tagmark-ui</code> has new commit
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi90YWdtYXJrLXVpL2Jsb2IvbWFpbi8uZ2l0aHViL3dvcmtmbG93cy9naXRodWItcGFnZS11cGRhdGUueW1s">tagmark-ui/.github/workflows/github-page-update.yml<i class="fa fa-external-link-alt"></i></span>: used to notify repo <code>my-tagmarks</code> of the <code>tagmark-ui</code> code updates, if you do not need this feature, you can disable it and skip setting repo <code>vars</code> and <code>secrets</code>
+<ul>
+<li><code>$&#123;&#123; secrets.GH_PAT_TAGMARK &#125;&#125;</code></li>
+<li><code>$&#123;&#123; vars.GH_PAGES_REPO &#125;&#125;</code></li>
+</ul></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9teS10YWdtYXJrcy9ibG9iL21haW4vLmdpdGh1Yi93b3JrZmxvd3MvdXBkYXRlLXRhZ21hcmstdWkueW1s">my-tagmarks/.github/workflows/update-tagmark-ui.yml<i class="fa fa-external-link-alt"></i></span>: used to receive the notify from <code>tagmark-ui</code> and synchronize the <code>tagmark-ui</code> code into <code>my-tagmarks</code>, if you do not need this feature, you can disable it and skip setting repo <code>vars</code> and <code>secrets</code>
+<ul>
+<li><code>$&#123;&#123; secrets.GH_PAT_TAGMARK &#125;&#125;</code></li>
+<li><code>$&#123;&#123; env.TAGMARK_UI_DIR &#125;&#125;</code></li>
+</ul></li>
+</ul></li>
+<li>#9
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbi9teS10YWdtYXJrcy9ibG9iL21haW4vLmdpdGh1Yi93b3JrZmxvd3MvZ2l0aHViX3BhZ2VzLnltbA==">my-tagmarks/.github/workflows/github_pages.yml<i class="fa fa-external-link-alt"></i></span>: no <code>vars</code> and <code>secrets</code> needed</li>
+</ul></li>
+</ul></li>
+<li>so the repo <code>vars</code> and <code>secrets</code> need to set are
+<ul>
+<li><code>$&#123;&#123; secrets.GH_PAT_TAGMARK &#125;&#125;</code>
+<ul>
+<li>it is a personal access tokens (aka PAT) having the <code>Contents(Read and Write access to code)</code> permission to the code of repo <code>my-tagmarks</code></li>
+<li>you need to set it in both <code>tagmark-ui</code> and <code>my-tagmarks</code> if you need the UI code synchronizing feature</li>
+</ul></li>
+<li><code>$&#123;&#123; vars.TAGMARK_DATA_EXPIRED_HOURS &#125;&#125;</code>
+<ul>
+<li>it determines the expiring time of the Github repo info to a bookmark, see <code>tagmark-py</code> subcommand <code>covert</code> for details</li>
+<li>the value I've set is <code>23</code></li>
+<li>only need to be set in repo <code>my-tagmarks</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<ul>
+<li>Why not use Github repository topics as tags directly?
+<ul>
+<li>some repository do not have topics</li>
+<li>topics are redundant and vary in each individual</li>
+</ul></li>
+<li>Are there any tag based cybersecurity resource collection like my-tagmarks?
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9vZmZzZWMudG9vbHMv">offsec.tools<i class="fa fa-external-link-alt"></i></span>: A vast collection of security tools for bug bounty, pentest and red teaming</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhaHd1bC9XZWJIYWNrZXJzV2VhcG9ucw==">WebHackersWeapons<i class="fa fa-external-link-alt"></i></span>: Web Hacker's Weapons / A collection of cool tools used by Web hackers.</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Made-by-PwnFan/" rel="tag"><i class="fa fa-tag"></i> Made-by-PwnFan</a>
+              <a href="/tags/Tag/" rel="tag"><i class="fa fa-tag"></i> Tag</a>
+              <a href="/tags/Bookmark/" rel="tag"><i class="fa fa-tag"></i> Bookmark</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ja/post/Best-Practices-Series-Multiple-Language-Support-for-Technical-Documentation/" rel="prev" title="「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応">
+                  <i class="fa fa-angle-left"></i> 「2023.004|JP」ベストプラクティスシリーズ：技術文書の多言語対応
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/en/post/Burp-Suite/" rel="next" title="「2023.006|EN」Burp Suite">
+                  「2023.006|EN」Burp Suite <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="en" data-href="/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/" selected="">
+          简体中文
+        </option>
+      
+        <option value="ja" data-href="/ja/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/" selected="">
+          日本語
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-face-laugh-wink"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">pwnfan</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">58k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">3:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B3bmZhbg==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/bookmark.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/pdf.min.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/tags/mermaid.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/pace.min.js"></script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-app-compat.js" integrity="sha256-xdQCzG9qpUPD/bs/ZEI5cFbxep9Zp6F1VJm3d9ynNcw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.2/firebase-firestore-compat.js" integrity="sha256-T7LqKXz+9Heox++4MR5RWllW/F1mamRl5xZjMdejtoE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDuyVhxv3LaoAg5axBJttaJ3ODG_RXsc7E","projectId":"blog-3f60c"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/statistics/firestore.min.js"></script>
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://www.pwn.fan/en/post/TagMark-Maybe-a-Better-Browser-Bookmark-Solution/"}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/quicklink.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":null,"apikey":"luKmfbJB07YStlw6eBbxDdbj2vy2MI7mwlWvvOx3aVUPvsNcrMBiUujReBWMHggt","shortname":"pwnfan","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"pwnfan","repo":"blog_gitalk","client_id":"d4e760680797ac164e57","client_secret":"a8a83d33d5996c78b6967a1283ab376f8d7aca0c","admin_user":"pwnfan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"e3cb016d2076677c6b0588e834b8ac90"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/gitalk.min.js"></script>
+
+</body>
+</html>
